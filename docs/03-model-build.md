@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-006
-**Version:** 0.3
+**Version:** 0.4
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion files:** `model/customer-risk-model.xlsx`, `data/synthetic-customers.csv`, `data/generation-notes.md`
@@ -29,10 +29,11 @@ Step 3 was supposed to be the mechanical step: load the data, apply the library,
 | `Customers` | The imported population, one row per customer |
 | `Scoring` | The engine: 400 rows × 20 lookups, then weighting, banding and escalation |
 | `Dashboard` | What the population looks like once scored, and how much work each category is doing |
-| `Checks` | Fifteen integrity tests |
+| `Checks` | Eighteen integrity tests |
 | `Backtest` | Step 4: six enforcement cases scored through the same library and weights |
+| `Validation` | Step 5: weight sensitivity, aggregation rules compared, and the 2026 EDD test |
 
-1.3 The workbook contains 13,281 formulas and no hardcoded results. Every score, weight, band and rating recalculates if the population or a weight changes.
+1.3 The workbook contains 19,351 formulas and no hardcoded results. Every score, weight, band and rating recalculates if the population or a weight changes.
 
 ## 2. How a rating is produced
 
@@ -97,7 +98,7 @@ The highest overall score anywhere in the population is **2.76**. The High band 
 
 ### 4.2 Why that happens
 
-It is not a coding error, and the workbook's fifteen checks all pass. It is arithmetic. Working down from the heaviest factor, **the nine heaviest factors would all have to score 5, with every one of the remaining eleven at 1, for a customer to reach exactly 3.50.** A weighted average over 20 factors pulls hard towards the middle: a customer has to be simultaneously bad on almost everything before the average moves, and real customers are bad on two or three things at once, not nine.
+It is not a coding error, and the workbook's eighteen checks all pass. It is arithmetic. Working down from the heaviest factor, **the nine heaviest factors would all have to score 5, with every one of the remaining eleven at 1, for a customer to reach exactly 3.50.** A weighted average over 20 factors pulls hard towards the middle: a customer has to be simultaneously bad on almost everything before the average moves, and real customers are bad on two or three things at once, not nine.
 
 Methodology 10.5 already said that a weighted average dilutes single severe factors by design, and that the escalator list is the compensating control. What Step 3 shows is how complete that dilution is. The escalators are not a compensating control at the margin; on this population they are doing **all** of the work at the top of the scale.
 
@@ -158,5 +159,6 @@ That is the same fact pattern as the worked example at methodology 5.6, which sc
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | Sept 2026 | First run of the model on the 400-customer synthetic population. |
+| 0.4 | Sept 2026 | Validation sheet and the Step 5 scenario columns added; three further integrity checks. Section 4 figures unchanged. |
 | 0.3 | Sept 2026 | Backtest sheet added for Step 4, and three further integrity checks. Section 4 figures unchanged. |
 | 0.2 | Sept 2026 | Re-run after the pre-Step-4 review corrected the C2 and C3 level 5 definitions. Every figure in section 4 is unchanged, because the correction was to wording rather than to any score. Document reference corrected from HND-CRA-005 to HND-CRA-006. |

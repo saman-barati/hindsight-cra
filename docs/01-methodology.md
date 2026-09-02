@@ -219,6 +219,8 @@ Whether that is the right answer is precisely what Step 4 exists to find out. It
 
 11.8 **Nothing in the library scores how complete the file is.** Added after Step 4. Reconstructing the Stunt & Co relationship as the FCA describes it - a file where not enough information was gathered at the start - produces the lowest business score in the back-test, because every unasked question sits at its benign level. A missing answer and a reassuring answer are indistinguishable to this model. See `backtest/cases/barclays-stunt-and-co.md`.
 
+11.9 **The weights were never the thing that mattered.** Added after Step 5. Moving any category weight by ten percentage points changes the band of at most 26 customers out of 400, and setting the delivery channel weight to zero changes 14. Against band boundaries placed where the population actually sits, the same changes move between 29 and 100. The boundaries decide this model's output; the weights barely touch it. Section 4.2 of this document says the weights are provisional pending Step 5. They are now provisional pending a boundary change, which has to come first. The validation pack recommends moving the boundaries to 1.60 and 2.20, moving A5 level 5 onto the escalator list, and adding a file-completeness factor. **None of those changes has been made to this methodology**, because paragraph 8.1 requires MLRO approval for any change to weights, bands or escalators. They are recorded in `docs/04-model-validation.md` section 9 and await that approval.
+
 ---
 
 ## Appendix A — Sources
@@ -239,3 +241,4 @@ Whether that is the right answer is precisely what Step 4 exists to find out. It
 | 0.2 | Sept 2026 | Regulation references made precise to reg. 18(2)(b). Scoring rule 4.5 added. Worked example at 5.6 rescored against the Step 2 risk factor library; the result moves from an illustrative 2.93 to a calculated 2.07. Section 11.4 updated accordingly. |
 | 0.3 | Sept 2026 | Section 11.5 added after the Step 3 run: the High band was not reached by the arithmetic anywhere in the synthetic population. |
 | 0.4 | Sept 2026 | Sections 11.6 to 11.8 added after the Step 4 back-test against six FCA enforcement cases. |
+| 0.5 | Sept 2026 | Section 11.9 added after the Step 5 validation pack. No change made to the weights, bands or escalators: the proposed changes are recorded in the validation pack and await approval under paragraph 8.1. |
