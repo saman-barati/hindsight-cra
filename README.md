@@ -22,7 +22,7 @@ I am a final-year Accounting and Finance student moving towards financial crime 
 | 2 | **Risk factor library** — 20 factors and 98 level definitions, each factor with a weight, a written rationale and a source | [`model/risk-factor-library.xlsx`](model/risk-factor-library.xlsx)<br>[`docs/02-risk-factor-rationale.md`](docs/02-risk-factor-rationale.md) | Complete |
 | 3 | **Build and run** — a synthetic population of 400 customers with documented assumptions, loaded in Power Query, scored, banded and escalated | [`model/customer-risk-model.xlsx`](model/customer-risk-model.xlsx)<br>[`data/synthetic-customers.csv`](data/synthetic-customers.csv)<br>[`docs/03-model-build.md`](docs/03-model-build.md) | Complete |
 | 4 | **Back-test** — six FCA enforcement cases, each rebuilt as an onboarding profile and run through the model | [`backtest/`](backtest/) | Complete |
-| 5 | **Validate and publish** — population distribution, weight sensitivity, override governance, plus a policy test of the 2026 change to jurisdiction-based EDD | `docs/03-model-validation.md`<br>`docs/04-edd-policy-note-2026.md` | Not started |
+| 5 | **Validate and publish** — population distribution, weight sensitivity, alternative aggregation rules, override governance, plus a policy test of the 2026 change to jurisdiction-based EDD | [`docs/04-model-validation.md`](docs/04-model-validation.md)<br>[`docs/05-edd-policy-note-2026.md`](docs/05-edd-policy-note-2026.md) | Complete |
 
 ## What the model has found so far
 
@@ -41,11 +41,25 @@ Four things came out of it:
 
 The full evidence, one file per case, is in [`backtest/`](backtest/). The population run that preceded it is in [`docs/03-model-build.md`](docs/03-model-build.md).
 
-## The policy question in Step 5
+## Two more things Step 5 found
 
-The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 narrow mandatory jurisdiction-based enhanced due diligence to countries on the FATF *Call for Action* list, rather than the whole FATF monitoring list. Dozens of countries come off the automatic trigger.
+**The weights were never the thing that mattered.** Moving any category weight by ten percentage points changes the band of at most 26 customers out of 400. Setting the delivery channel weight to zero changes 14. I spent a whole document in Step 2 arguing about those numbers.
 
-Step 5 runs the same customer population under the old rule and the new one, counts how many customers change band, and sets out what a firm would need to change elsewhere to keep the same risk sensitivity. It is a live question for UK compliance teams and I wanted to answer it with a number rather than an opinion.
+Against band boundaries placed where the population actually sits, the same weight changes move between 29 and 100 customers — three to six times as many. The boundaries decide this model's output; the weights barely touch it. That reverses the order of the work: fix the bands first, argue about the weights second.
+
+**The 2026 EDD change removes the only control that was catching a whole population.** The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 narrow mandatory jurisdiction-based enhanced due diligence to the three FATF *Call for Action* countries, rather than those plus the 22 on the *Increased Monitoring* list.
+
+On this book, 16 customers had jurisdiction-based EDD. Under the new rule, 5 do. Of the 11 who lose it, **not one is escalated for any other reason**, and 9 fall to Low.
+
+The model already scores them — a connection to a monitored jurisdiction is level 4 on the geography factors — but as the sensitivity work shows, one factor at level 4 cannot move a customer across a band. The score sees the risk; the rating does not.
+
+The recommendation is a firm-policy floor at Medium rather than a weight change, costing roughly a third of simply keeping the old trigger. The reasoning is in [`docs/05-edd-policy-note-2026.md`](docs/05-edd-policy-note-2026.md), written as the note a compliance analyst would actually put in front of an MLRO.
+
+## What has not been changed
+
+The validation pack recommends five changes to the model. **None of them has been applied.** Paragraph 8.1 of the methodology requires MLRO approval for any change to weights, bands or escalators, so they are recorded in [`docs/04-model-validation.md`](docs/04-model-validation.md) and left there.
+
+That is deliberate. A model whose author quietly rewrites it the moment a test embarrasses him has no version history worth reading.
 
 ## Please read this before using anything here
 
