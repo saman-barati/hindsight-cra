@@ -19,10 +19,27 @@ I am a final-year Accounting and Finance student moving towards financial crime 
 | | Step | Output | Status |
 |---|---|---|---|
 | 1 | **Methodology** — define the firm, the perimeter, the risk factor framework, the scoring rules, the bands and the governance around them | [`docs/01-methodology.md`](docs/01-methodology.md) | Complete |
-| 2 | **Risk factor library** — around 25 factors, each with defined levels, a score, a weight and a written rationale citing its source | `model/risk-factor-library.xlsx`<br>`docs/02-risk-factor-rationale.md` | Not started |
-| 3 | **Build and run** — a synthetic population of 400 customers with documented assumptions, loaded and cleaned in Power Query, scored and banded | `data/synthetic-customers.csv`<br>`model/customer-risk-model.xlsx` | Not started |
-| 4 | **Back-test** — six FCA enforcement cases, each rebuilt as an onboarding profile and run through the model | `backtest/` | Not started |
+| 2 | **Risk factor library** — 20 factors and 98 level definitions, each factor with a weight, a written rationale and a source | [`model/risk-factor-library.xlsx`](model/risk-factor-library.xlsx)<br>[`docs/02-risk-factor-rationale.md`](docs/02-risk-factor-rationale.md) | Complete |
+| 3 | **Build and run** — a synthetic population of 400 customers with documented assumptions, loaded in Power Query, scored, banded and escalated | [`model/customer-risk-model.xlsx`](model/customer-risk-model.xlsx)<br>[`data/synthetic-customers.csv`](data/synthetic-customers.csv)<br>[`docs/03-model-build.md`](docs/03-model-build.md) | Complete |
+| 4 | **Back-test** — six FCA enforcement cases, each rebuilt as an onboarding profile and run through the model | [`backtest/`](backtest/) | Complete |
 | 5 | **Validate and publish** — population distribution, weight sensitivity, override governance, plus a policy test of the 2026 change to jurisdiction-based EDD | `docs/03-model-validation.md`<br>`docs/04-edd-policy-note-2026.md` | Not started |
+
+## What the model has found so far
+
+Six customers named in published FCA enforcement notices — NatWest and Fowler Oldfield, Santander UK, both Barclays cases, Monzo and Nationwide — were rebuilt as they looked **on the day each bank took them on**, and run through the same library, weights and rules as the 400 synthetic customers.
+
+**Between them those customers caused roughly £480 million of UK enforcement penalties. The model's arithmetic rates every single one Low.**
+
+Nothing reaches 1.90 on a scale where High begins at 3.50. The one High rating in the table comes from a mandatory escalator rather than from the score, and only under one of two defensible readings of a single factor.
+
+Four things came out of it:
+
+- **One word decides the most serious case.** Fowler Oldfield was a jewellery business. Read as a *cash-intensive trade* it is Low; read as a *dealer in high-value goods* it is High. The scores differ by 0.075. The rating differs completely.
+- **A customer whose stated address was a London landmark scores 1.52.** The library has a factor written for exactly that, from the Monzo notice. I gave it 1.5% of the model in Step 2 and defended the choice in writing. The back-test says I was wrong, and both the reasoning and the result stay in the repository.
+- **The model cannot rate a file nobody filled in.** Reconstruct the Stunt & Co relationship as the FCA describes it and every unasked question sits at its benign default. A missing answer and a reassuring answer produce the same number.
+- **Two of the six were never onboarding failures.** Santander's translations company and Nationwide's personal customer were both rated correctly at onboarding. What failed was the monitoring afterwards — which is what the event-driven review triggers exist for, not the rating.
+
+The full evidence, one file per case, is in [`backtest/`](backtest/). The population run that preceded it is in [`docs/03-model-build.md`](docs/03-model-build.md).
 
 ## The policy question in Step 5
 
