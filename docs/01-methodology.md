@@ -40,7 +40,7 @@ Two things this document is not. It is not professional compliance advice, and i
 
 | Source | What it drives in this document |
 |---|---|
-| MLRs 2017, reg. 18 — Risk assessment by relevant persons | The five risk categories in section 4 follow the factors listed at reg. 18(2) |
+| MLRs 2017, reg. 18 — Risk assessment by relevant persons | The five risk categories in section 4 follow the factors listed at reg. 18(2)(b)(i)-(v) |
 | MLRs 2017, reg. 19 and 21 — Policies, controls and procedures; internal controls | Governance, override approval and record-keeping in section 8 |
 | MLRs 2017, reg. 27, 28 and 30 — When CDD applies, CDD measures, timing | Band consequences in section 6 |
 | MLRs 2017, reg. 31 — Requirement to cease transactions | Prohibited relationships at 5.4 |
@@ -55,7 +55,7 @@ Two things this document is not. It is not professional compliance advice, and i
 
 ## 4. Risk factor framework
 
-4.1 Regulation 18(2) requires a firm to take account of risk factors relating to its customers, the countries or geographic areas it operates in, its products and services, its transactions, and its delivery channels. The model uses those five headings unchanged, so that the mapping between the regulation and the model is direct and can be checked by anyone reading both.
+4.1 Regulation 18(2)(b) requires a firm to take account of risk factors relating to its customers, the countries or geographic areas it operates in, its products and services, its transactions, and its delivery channels. The model uses those five headings unchanged, so that the mapping between the regulation and the model is direct and can be checked by anyone reading both.
 
 | # | Category | Weight | What it captures |
 |---|---|---|---|
@@ -78,6 +78,8 @@ Two things this document is not. It is not professional compliance advice, and i
 | 5 | High. A feature identified as high risk by the MLRs, JMLSG, the National Risk Assessment or FATF. |
 
 4.4 Every factor has a written definition of what each score means for that specific factor. Analysts do not exercise judgement on the number; they select the level that matches the evidence on file. This is deliberate. A model where two analysts can defensibly score the same customer differently is not a model.
+
+4.5 Where a customer's declared figure straddles two levels - a range of expected cash deposits that spans a threshold, for example - the higher level applies. This is recorded here rather than left to the analyst, so that two people scoring the same file reach the same number.
 
 ## 5. Calculating the rating
 
@@ -125,16 +127,22 @@ Overall = 0.30·C + 0.25·G + 0.20·P + 0.10·D + 0.15·A
 
 Customer 4417. Sole trader, UK resident, onboarded through the mobile app with electronic identity verification. Trades in used motor vehicles. Declares turnover of £15,000 to £25,000 a month, of which roughly half is expected in cash. No adverse media, no PEP match, simple ownership.
 
+Scored against the risk factor library built in Step 2 (`model/risk-factor-library.xlsx`, sheet `Example`):
+
 | Category | Score | Weight | Contribution |
 |---|---|---|---|
-| Customer | 3.60 | 30% | 1.08 |
-| Geography | 1.40 | 25% | 0.35 |
-| Product and service | 3.00 | 20% | 0.60 |
-| Delivery channel | 3.00 | 10% | 0.30 |
-| Expected activity | 4.00 | 15% | 0.60 |
-| **Overall** | | | **2.93 — Medium** |
+| Customer | 1.95 | 30% | 0.5850 |
+| Geography | 1.00 | 25% | 0.2500 |
+| Product and service | 3.05 | 20% | 0.6100 |
+| Delivery channel | 2.60 | 10% | 0.2600 |
+| Expected activity | 2.45 | 15% | 0.3675 |
+| **Overall** | | | **2.0725, rounded to 2.07 - Medium** |
 
-2.93 sits comfortably inside the Medium band. The relationship is cash-intensive, non-face-to-face, and in a sector the National Risk Assessment treats as vulnerable, but the geography score is so low that it pulls the average down and keeps the customer out of High. Whether that is the right answer is precisely what Step 4 exists to find out.
+2.07 sits one hundredth of a point above the Low boundary. A sole trader in a cash-intensive sector, onboarded without ever being seen, expecting to take half of a five-figure monthly turnover in cash, is rated barely above the Bank's lowest band.
+
+Two things produce that result. The customer category scores 1.95 because four of its five factors are clean and only the sector score is elevated. The geography category scores the minimum possible 1.00 and, at a weight of 25%, holds a quarter of the model at the floor.
+
+Whether that is the right answer is precisely what Step 4 exists to find out. It is also the first evidence for the concerns recorded at 11.1 and 11.2.
 
 ## 6. What each band means
 
@@ -201,7 +209,15 @@ Customer 4417. Sole trader, UK resident, onboarded through the mobile app with e
 
 11.3 **Whether expected activity belongs in an onboarding model at all.** It is self-declared, unverified on the day, and a customer intending to misuse the account has every reason to state something ordinary. It may be more honest to score it at onboarding for the record and give it no weight until the first refresh, when declared activity can be compared with real activity.
 
-11.4 **Cash-intensive sole traders.** The worked example at 5.6 lands at Medium and my instinct says it should be High. Instinct is not evidence, which is why Step 4 tests the model against customers who are already known to have caused harm rather than against my intuition.
+11.4 **Cash-intensive sole traders.** The worked example at 5.6 lands at 2.07, one hundredth of a point above Low, and my instinct says it should be High. Instinct is not evidence, which is why Step 4 tests the model against customers already known to have caused harm rather than against my intuition. If the back-test agrees with my instinct, the fix is more likely to be in the category weights at 4.1 than in the level definitions.
+
+11.5 **Whether the High band can be reached by the arithmetic at all.** Added after Step 3. Scored against the risk factor library, not one of the 400 customers in the synthetic population reached the High band on the weighted average; the highest score anywhere was 2.76 against a threshold of 3.50, and all 40 High ratings came from the mandatory escalators at 5.3. Working down from the heaviest factor, the nine heaviest would all have to score 5, with every remaining factor at 1, for a customer to reach exactly 3.50. Paragraph 10.5 already says a weighted average dilutes single severe factors and that the escalator list is the compensating control. What Step 3 shows is that on this population the escalators are not compensating at the margin, they are doing all of the work at the top of the scale. Step 5 has to decide whether the answer is to move the boundaries, to re-weight, or to change the aggregation rule itself. The evidence is in `docs/03-model-build.md`, section 4.
+
+11.6 **The C3 level 5 definition is ambiguous and I now know it.** Added after Step 4. Fowler Oldfield was a jewellery business. Read as a cash-intensive trade it scores 4; read as a dealer in high-value goods it scores 5 and triggers escalator 5.3(c). Both readings are defensible on the current wording, and they produce Low and High respectively on the customer behind the FCA's first criminal prosecution of a bank. The level must turn on a checkable fact - whether the customer is registered with HMRC as a high value dealer - rather than on a description of the trade. See `backtest/cases/natwest-fowler-oldfield.md`.
+
+11.7 **A5 is the right factor carrying the wrong weight.** Added after Step 4. Level 5 of A5 was written from the Monzo notice to capture a declared profile that cannot be true, such as an address that is a well-known landmark. Scored through the model, such a customer reaches 1.52 and is rated Low, because A5 carries 1.5% of the effective weight. A fact that cannot be true is not a small increase in risk; it is a failure to identify the customer. Step 5 should move it out of the weighted average and onto the escalator or prohibited list. See `backtest/cases/monzo-landmark-address.md`.
+
+11.8 **Nothing in the library scores how complete the file is.** Added after Step 4. Reconstructing the Stunt & Co relationship as the FCA describes it - a file where not enough information was gathered at the start - produces the lowest business score in the back-test, because every unasked question sits at its benign level. A missing answer and a reassuring answer are indistinguishable to this model. See `backtest/cases/barclays-stunt-and-co.md`.
 
 ---
 
@@ -220,3 +236,6 @@ Customer 4417. Sole trader, UK resident, onboarded through the mobile app with e
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | Sept 2026 | First draft. Weights provisional pending Step 2 and Step 5. |
+| 0.2 | Sept 2026 | Regulation references made precise to reg. 18(2)(b). Scoring rule 4.5 added. Worked example at 5.6 rescored against the Step 2 risk factor library; the result moves from an illustrative 2.93 to a calculated 2.07. Section 11.4 updated accordingly. |
+| 0.3 | Sept 2026 | Section 11.5 added after the Step 3 run: the High band was not reached by the arithmetic anywhere in the synthetic population. |
+| 0.4 | Sept 2026 | Sections 11.6 to 11.8 added after the Step 4 back-test against six FCA enforcement cases. |
