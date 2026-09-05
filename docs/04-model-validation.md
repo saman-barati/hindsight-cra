@@ -23,7 +23,7 @@ The largest finding is not one I expected. I spent Step 2 arguing about the weig
 
 1.2 It cannot show that the ratings are correct. There is no outcome data. Step 4 tested the model against customers whose outcomes are publicly known, and that back-test remains the only evidence in this project about whether the model is *right* rather than merely consistent.
 
-1.3 **And that evidence is narrower than it looks.** The facts each FCA notice settles — a UK company, a UK address, branch or app onboarding — pin between 41% and 69% of the model's weight at level 1 before any judgement is made. The highest score any of the six reconstructions could reach, if every remaining factor were pushed to 5, is 3.37, and the High band begins at 3.50. So the back-test's headline finding, that no reconstruction reaches High on the arithmetic, was fixed by its inputs and is not a discovery. What the back-test can still decide is whether an escalator fires, and how far the answer moves when the same file is read two defensible ways. Everything this pack takes from Step 4 is limited to those two things. See [`backtest/README.md`](../backtest/README.md).
+1.3 **And that evidence is narrower than it looks.** The facts each FCA notice settles — a UK company, a UK address, branch or app onboarding — pin between 40% and 69% of the model's weight at level 1 before any judgement is made. The highest score any of the six reconstructions could reach, if every remaining factor were pushed to 5, is 3.40, and the High band begins at 3.50. So the back-test's headline finding, that no reconstruction reaches High on the arithmetic, was fixed by its inputs and is not a discovery. What the back-test can still decide is whether an escalator fires, and how far the answer moves when the same file is read two defensible ways. Everything this pack takes from Step 4 is limited to those two things. See [`backtest/README.md`](../backtest/README.md).
 
 ## 2. How the population distributes
 
@@ -183,7 +183,7 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 
 8.2 **The proposed boundaries are fitted to this population, and the aggregation rule is chosen on an unsourced workload limit.** Both admissions used to live here. They have been moved to 5.3 and 4.2, next to the conclusions they undercut, because a caveat filed at the back of a document is not a caveat a reader meets before believing the finding.
 
-8.3 **The challenge is no longer entirely internal, and that changed the pack.** This version follows an external second-line review. Its findings, the ones accepted and the three disputed, are in [`docs/06-review-response.md`](06-review-response.md). Sections 1.3, 4.2, 5.1, 5.2 and 5.3 all exist because of it. That is not the same as independent validation — I still chose which findings to accept — but it is no longer a document that has only ever been read by its author.
+8.3 **The challenge in this pack is the author's own.** Sections 1.3, 4.2, 5.1, 5.2 and 5.3 each set the objection to a finding next to the finding itself, which is the discipline a second line would impose. It is not a substitute for one. Nobody independent of the model has signed this off, and a model challenged only by its author is a model with one opinion in it.
 
 8.4 **Fitting to six cases is not validation either.** Six enforcement notices are the six that were published, prosecuted and reported. Firms that failed without being fined are not in the sample, and neither are the customers who looked terrible and turned out fine — which is the false positive side, and this project has no way to see it at all.
 
@@ -210,6 +210,6 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 
 | Version | Date | Change |
 |---|---|---|
-| 0.3 | Sept 2026 | Second pre-publication review. Percentiles corrected to the 43rd and 88th; the workload ratio at 4.2 corrected from three times to 1.7; changes 7 and 8 added to section 5; two further defect fixes logged in section 9. |
-| 0.2 | Sept 2026 | Rewritten after an external second-line review. The back-test ceiling is stated at 1.3 before any conclusion rests on it; the unsourced workload limit is stated at 4.2 where it decides the answer; the circularity of the proposed boundaries is stated at 5.3 where they are recommended. Change 3 is marked contested, change 5's evidence is downgraded, and a PEP change is added at 4 for regulation 35(3A). All figures re-run after escalator 5.3(d) was corrected. |
+| 0.3 | Sept 2026 | Percentiles corrected to the 43rd and 88th; the workload ratio at 4.2 corrected to 1.7; changes 7 and 8 added to section 5; two defect fixes logged in section 9. |
+| 0.2 | Sept 2026 | The back-test ceiling is now stated at 1.3 before any conclusion rests on it; the unsourced workload limit is stated at 4.2 where it decides the answer; the circularity of the proposed boundaries is stated at 5.3 where they are recommended. Change 3 is marked contested, change 5's evidence is downgraded, and a PEP change is added at 4 for regulation 35(3A). All figures re-run after escalator 5.3(d) was corrected. |
 | 0.1 | Sept 2026 | First validation pack: distribution, sensitivity, aggregation rules, recommended changes. |

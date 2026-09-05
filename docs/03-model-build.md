@@ -94,7 +94,7 @@ Change the path on the second line to wherever the repository sits. Everything e
 
 **Every one of those 43 High ratings came from a mandatory escalator. Not one customer in 400 reached the High band on the arithmetic.**
 
-Three of the 43 arrive there because of a correction made after external review: escalator 5.3(d) covers nominee shareholders and bearer shares, level 5 of factor C1 covers trusts, nominee arrangements and overseas incorporation, and the model was firing 5.3(d) on factor C2 only. It now fires on C1 level 5 as well. Methodology 11.9a explains why that was applied without approval when nothing else on the recommendation list has been.
+Three of the 43 arrive there because of a defect fix: escalator 5.3(d) covers nominee shareholders and bearer shares, level 5 of factor C1 covers trusts, nominee arrangements and overseas incorporation, and the model was firing 5.3(d) on factor C2 only. It now fires on C1 level 5 as well. Methodology 11.9a explains why that was applied without approval when nothing else on the recommendation list has been.
 
 The highest overall score anywhere in the population is **2.76**. The High band starts at 3.50.
 
@@ -136,7 +136,7 @@ Not one personal customer was rated Medium. The highest-scoring personal custome
 
 Eight customers are in a cash-intensive sector **and** expect more than 30% of their credits in cash, and no escalator applies to any of them. All eight are rated Medium. The highest scores 2.21.
 
-That is the same fact pattern as the worked example at methodology 5.6, which scored 2.07, and it is the question Step 4 answers — though not as cleanly as this sentence originally claimed. See [`backtest/README.md`](../backtest/README.md). Six customers named in FCA notices carrying roughly £480m of penalties between them are rebuilt there; none reaches High on the arithmetic, and none of them could have, because the facts the notices settle pin between 41% and 69% of the model's weight at level 1 before any judgement is made.
+That is the same fact pattern as the worked example at methodology 5.6, which scored 2.07, and it is the question Step 4 answers, though less cleanly than that phrasing suggests. See [`backtest/README.md`](../backtest/README.md). Six customers named in FCA notices carrying roughly £480m of penalties between them are rebuilt there; none reaches High on the arithmetic, and none of them could have, because the facts the notices settle pin between 40% and 69% of the model's weight at level 1 before any judgement is made.
 
 ## 5. What this does not prove
 
@@ -144,7 +144,7 @@ That is the same fact pattern as the worked example at methodology 5.6, which sc
 
 5.2 The distributions are my judgement. Change them and the band counts change. What does **not** change with the distributions is that G1 has one value, that nine factors must be at 5 to reach 3.50, and that a weighted average compresses. Those are properties of the model, not of the data.
 
-5.2a **Everything else in section 4 is a property of the population.** Added after external review, which asked for every place this project states a population property as a model property; extended after a second review found the list incomplete. Every one of these changes if the distributions change:
+5.2a **Everything else in section 4 is a property of the population.** Section 4 reads like a set of findings about the model. Most of it is a finding about a book of customers I invented. Every one of these changes if the distributions change:
 
 - the band shares and counts in 4.1, including the three customers the escalator 5.3(d) correction moved;
 - **"the highest overall score anywhere in the population is 2.76"** (4.2). The model's ceiling is 5.00. This number describes a draw, not a design;
@@ -172,9 +172,9 @@ What is **not** a property of the population: G1 takes one value because methodo
 
 | Version | Date | Change |
 |---|---|---|
-| 0.6 | Sept 2026 | Second pre-publication review. The sheet count in 1.2 corrected from six to nine, the 3.50 arithmetic in 4.2 corrected, and 5.2a extended to the properties it had omitted. Figures re-run after the G2 label and C4 definition corrections. |
-| 0.5 | Sept 2026 | After external second-line review. Escalator 5.3(d) corrected to fire on C1 level 5, which moves three customers from Medium to High; every figure in section 4 re-run. The 3.50 arithmetic at 4.2 restated precisely (nine is a count, not a unique set). 5.2a added, listing the findings that are properties of the invented population rather than of the model. |
+| 0.6 | Sept 2026 | The sheet count in 1.2 corrected from six to nine, the 3.50 arithmetic in 4.2 corrected, and 5.2a extended to the properties it had omitted. Figures re-run after the G2 label and C4 definition corrections. |
+| 0.5 | Sept 2026 | Escalator 5.3(d) corrected to fire on C1 level 5, which moves three customers from Medium to High; every figure in section 4 re-run. The 3.50 arithmetic at 4.2 restated precisely (nine is a count, not a unique set). 5.2a added, listing the findings that are properties of the invented population rather than of the model. |
 | 0.4 | Sept 2026 | Validation sheet and the Step 5 scenario columns added; three further integrity checks. Section 4 figures unchanged. |
 | 0.3 | Sept 2026 | Backtest sheet added for Step 4, and three further integrity checks. Section 4 figures unchanged. |
-| 0.2 | Sept 2026 | Re-run after the pre-Step-4 review corrected the C2 and C3 level 5 definitions. Every figure in section 4 is unchanged, because the correction was to wording rather than to any score. Document reference corrected from HND-CRA-005 to HND-CRA-006. |
+| 0.2 | Sept 2026 | Re-run after the C2 and C3 level 5 definitions were corrected. Every figure in section 4 is unchanged, because the correction was to wording rather than to any score. Document reference corrected from HND-CRA-005 to HND-CRA-006. |
 | 0.1 | Sept 2026 | First run of the model on the 400-customer synthetic population. |

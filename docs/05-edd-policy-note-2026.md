@@ -20,7 +20,7 @@
 
 1.4 Two features of the drafting matter for how this firm should respond. The definition now tracks the FATF list **as it has effect from time to time**, so the population in scope changes at each plenary without any UK instrument and without anyone at this firm deciding anything — which is the argument for the monitoring at section 6.1. And regulation 20 of the same instrument inserts a new **regulation 34A**, extending mandatory enhanced due diligence to cryptoasset exchange providers, custodian wallet providers and correspondent relationships, in force **1 February 2027**. That is outside the scope of this note — Northgate does not offer those services — but it is the reason the instrument should not be described as a relaxation. It narrows one trigger and adds another.
 
-1.5 An earlier version of this note was written against the draft instrument and a law firm's commentary on it. It has been rewritten against the made version. The substance did not change; the citation did, and a note whose whole argument rests on one instrument should not have been resting on a summary of it.
+1.5 Every citation in this note is taken from the instrument as made, read on legislation.gov.uk, rather than from the draft or from commentary on it. A note whose whole argument rests on one instrument should not rest on a summary of it.
 
 ## 2. What it means for this book
 
@@ -98,6 +98,6 @@ Measured on the current population of 400 customers.
 
 | Version | Date | Change |
 |---|---|---|
-| 0.3 | Sept 2026 | Second pre-publication review. The argument at 5.3 was false and is replaced. The "eighteen months" at 7.3 is five. The policy intention behind the instrument is no longer asserted, and the "roughly a third" cost figure is labelled as the placeholder it is. |
+| 0.3 | Sept 2026 | The argument at 5.3 was false and is replaced. The "eighteen months" at 7.3 is five. The policy intention behind the instrument is no longer asserted, and the "roughly a third" cost figure is labelled as the placeholder it is. |
 | 0.2 | Sept 2026 | Rewritten against SI 2026/621 as made, rather than the draft instrument and commentary on it. Regulation 19's actual amendments to regulation 33 are quoted at 1.2; the dynamic reference to the FATF list and the insertion of regulation 34A are added at 1.4; section 7 is rewritten to say what the note does not cover rather than to ask for a check that has now been done. Figures re-run. |
 | 0.1 | Sept 2026 | First version, written against the draft instrument. |
