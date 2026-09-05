@@ -1,57 +1,75 @@
 # Nationwide and the personal account used for business
 
 **Document reference:** HND-CRA-007
-**Version:** 0.1
+**Version:** 0.2
 **Author:** Saman Barati
 **Date:** September 2026
 
 | | |
 |---|---|
 | **Firm** | Nationwide Building Society |
+| **Firm** | Nationwide Building Society |
 | **Penalty** | £44,078,500 (reduced from £62,969,297) |
-| **Date** | December 2025 |
-| **Relevant period** | October 2016 to July 2021 |
+| **Date** | Final notice 11 December 2025, announced 12 December 2025 |
+| **Relevant period** | 1 October 2016 to 1 July 2021 |
 | **Source** | https://www.fca.org.uk/news/press-releases/fca-fines-nationwide-44m-failings-financial-crime-controls |
 
 ## What happened
 
-Nationwide did not keep due diligence and risk assessments up to date across its personal current account book, and did not adequately monitor transactions. It knew customers were running business activity through personal accounts in breach of its terms and had no process to manage the financial crime risk that created.
+Nationwide did not keep due diligence and risk assessments up to date across its personal current
+account book, and did not adequately monitor transactions. It knew customers were running business
+activity through personal accounts in breach of its terms and had no process to manage the financial
+crime risk that created.
 
-One customer received **24 fraudulent Covid furlough payments totalling £27.3 million**. HMRC recovered £26.5 million; around £800,000 was not recovered.
+One customer received **24 fraudulent Covid furlough payments** totalling £27.36 million. HMRC seized
+£26.54 million; £820,687 was not recovered.
 
-## The customer at onboarding
+## What the notice settles
 
-An entirely ordinary personal customer.
+- An entirely ordinary personal customer at onboarding: a current account, digital onboarding,
+  electronic verification, income under £5,000 a month, nothing inconsistent on file.
 
-| Factor | Level recorded | Score |
+## Where the readings differ
+
+Very little is open here, and pushing what is open to its worst defensible level moves the score by
+about a tenth of a point. Both readings are Low.
+
+| Factor | Favourable reading | Adverse reading |
 |---|---|---|
-| C1 Legal form | Individual | 1 |
-| C3 Occupation | Employed or pension | 1 |
-| P1 Product | Current account with credit | 3 |
-| D1 Onboarding channel | Digital, own app | 3 |
-| D2 Identity verification | Electronic, two sources | 3 |
-| A1 Turnover | Under 5k, consistent | 1 |
-| A5 Plausibility | Consistent | 1 |
+| D2 Identity verification method | Electronic, two sources (3) | **Electronic, one source (4)** |
+| A2 Expected cash proportion of credits | Up to 10 percent (2) | **10 to 30 percent (3)** |
+| A4 Expected counterparty profile | Employer and retail (1) | **Named businesses (2)** |
 
 ## What the model says
 
-| | |
-|---|---|
-| Weighted score | **1.4950** |
-| Band from the arithmetic | Low |
-| Mandatory escalator | No |
-| **Final rating** | **Low** |
+| | Favourable reading | Adverse reading |
+|---|---|---|
+| Weighted score | 1.4950 | 1.5975 |
+| Rounded | 1.50 | 1.60 |
+| Band from the arithmetic | Low | Low |
+| Mandatory escalator | No | No |
+| **Final rating** | **Low** | **Low** |
 
-The lowest score in the back-test, and the right answer.
+13 of the 20 factors are settled at level 1 by the notice itself and take that value in every reading. They carry **68.25% of the model's weight**. Even if every one of the remaining 7 factors were pushed to 5, this reconstruction could not score above **2.27**, and the High band begins at 3.50. Nothing this case file says about the arithmetic is a discovery; the ceiling was fixed before any judgement was made.
 
 ## What this teaches the model
 
-1. **This case is why review trigger 7.2(d) exists.** Methodology 7.2(d) fires a re-rating when business activity is identified on a personal account. It was written into the Step 1 methodology on the basis of this notice, before any scoring was done. The back-test confirms the reason: nothing at onboarding could have found this customer, so the control has to be a trigger.
+1. **This is the right answer.** The lowest score in the back-test, on a customer who was, at
+   onboarding, exactly what the file said. Nothing in a customer risk assessment could have predicted
+   a fraud that had not happened yet against a scheme that did not yet exist.
 
-2. **A Low rating is not a clean bill of health.** Methodology 10.1 says so in one line. This is the case that gives that line its meaning: the customer was correctly Low and went on to receive £27.3 million of fraudulent payments.
+2. **The failure is the refresh, not the rating.** The FCA's finding is that assessments were not kept
+   up to date. This model produces a rating at onboarding and refreshes it on the cycle at methodology
+   7.1, with event-driven triggers at 7.2. Trigger (d) — business activity on a personal account —
+   exists in this project because of this notice.
 
-3. **It sets the boundary of what Step 5 should try to fix.** Two of the six cases in this back-test are monitoring failures, not rating failures. Reweighting the model would not have caught either. The right response is to leave them alone and be clear about which control owns which risk.
+3. **A back-test that only ever confirmed the model would be worthless.** This case is here because it
+   is the one where the model is right and the interesting failure is somewhere else entirely.
+
+
 
 ---
 
-*Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice records. It is not a claim about what the firm's file actually contained, and it is not a criticism of any individual. The purpose is to test a model, not to re-try a case.
+*Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice
+records. It is not a claim about what the firm's file actually contained, and it is not a criticism of
+any individual. The purpose is to test a model, not to re-try a case.

@@ -1,57 +1,80 @@
 # Santander UK and the translations company
 
 **Document reference:** HND-CRA-007
-**Version:** 0.1
+**Version:** 0.2
 **Author:** Saman Barati
 **Date:** September 2026
 
 | | |
 |---|---|
 | **Firm** | Santander UK Plc |
+| **Firm** | Santander UK Plc |
 | **Penalty** | £107,793,300 |
-| **Date** | 9 December 2022 |
-| **Relevant period** | 31 December 2012 to 18 October 2017 |
+| **Date** | Final notice 9 December 2022 |
 | **Source** | https://www.fca.org.uk/news/press-releases/fca-fines-santander-uk-repeated-anti-money-laundering-failures |
 
 ## What happened
 
-A small translations company opened a business account and told the bank to expect around **£5,000 a month** in deposits. Within six months the account was receiving millions, which were moved on quickly to other accounts. The bank's own anti-money laundering team recommended closing the account in March 2014. It was closed in September 2015, **thirty months later**.
+A small translations company opened a business account and told the bank to expect around **£5,000 a
+month** in deposits. Within six months the account was receiving millions, which were swiftly
+transferred on to separate accounts. The bank's own anti-money laundering team recommended closing the
+account in March 2014, the decision to close was taken in April 2015, and the account was not closed
+until September 2015 — **eighteen months** after the recommendation.
 
-The FCA found Santander had ineffective systems to verify what customers told it, and did not compare what customers said would go through their accounts with what actually did. More than £298 million passed through problem business accounts.
+The FCA found Santander had ineffective systems to verify what customers told it, and did not compare
+what customers said would go through their accounts with what actually did. More than £298 million
+passed through the accounts of six Money Service Business customers before they were closed, roughly
+£269 million of it through a single customer.
 
-## The customer at onboarding
+## What the notice settles
 
-| Factor | Level recorded | Score |
+- A UK company, a business account, and a declared expectation of about £5,000 a month.
+- Nothing in the notice suggests anything unusual was recorded at onboarding. That is the point of the
+  case: on day one this was an ordinary customer, and it was rated as one.
+
+## Where the readings differ
+
+The notice says almost nothing about ownership, counterparties or payment corridors, so the open
+factors here are numerous and the range is correspondingly meaningful.
+
+| Factor | Favourable reading | Adverse reading |
 |---|---|---|
-| C1 Legal form | UK company, natural owners | 3 |
-| C3 Industry or occupation | General trade | 3 |
-| G3 Payment corridor | Unlisted countries | 2 |
-| P1 Product | Business account, basic | 4 |
-| P2 Cash functionality | Under 2k a month | 3 |
-| A1 Turnover | Under 5k, consistent | 1 |
-| A5 Plausibility | Consistent | 1 |
-
-Nothing here is a red flag. A small translations business expecting £5,000 a month is an ordinary customer, and on the day it was onboarded it looked like one.
+| C2 Ownership and control structure | One or two UBOs (2) | **Three to five UBOs (3)** |
+| P3 International payment functionality | Enabled, unused (2) | **Occasional payments (3)** |
+| P4 Third-party access to the account | Sole party (1) | **Mandate, evidenced (3)** |
+| A3 Expected international proportion of value | Up to 10 percent (2) | **10 to 40 percent (3)** |
+| A4 Expected counterparty profile | Named businesses (2) | **Many individuals (3)** |
 
 ## What the model says
 
-| | |
-|---|---|
-| Weighted score | **1.8875** |
-| Band from the arithmetic | Low |
-| Mandatory escalator | No |
-| **Final rating** | **Low** |
+| | Favourable reading | Adverse reading |
+|---|---|---|
+| Weighted score | 1.8875 | 2.1100 |
+| Rounded | 1.89 | 2.11 |
+| Band from the arithmetic | Low | Medium |
+| Mandatory escalator | No | No |
+| **Final rating** | **Low** | **Medium** |
+
+9 of the 20 factors are settled at level 1 by the notice itself and take that value in every reading. They carry **40.75% of the model's weight**. Even if every one of the remaining 11 factors were pushed to 5, this reconstruction could not score above **3.37**, and the High band begins at 3.50. Nothing this case file says about the arithmetic is a discovery; the ceiling was fixed before any judgement was made.
 
 ## What this teaches the model
 
-1. **The model is right here, and that is the point.** There was nothing at onboarding to catch. Rating this customer Low was the correct answer on the information available.
+1. **This is not an onboarding failure and the model should not be asked to catch it.** The customer
+   was rated correctly. The failure was the eighteen months between an internal recommendation to close
+   and the closure, and no customer risk rating reaches that far.
 
-2. **The failure was the comparison nobody made.** £5,000 declared against millions received is not a scoring problem, it is a monitoring problem — and specifically review trigger 7.2(e), activity materially inconsistent with the expected activity recorded at onboarding.
+2. **What the model is missing is the comparison, not the score.** The declaration of £5,000 a month is
+   recorded at A1. Nothing in the model ever compares it with what the account received. That comparison
+   belongs to transaction monitoring and to the event-driven review triggers at methodology 7.2, and the
+   back-test's value here is confirming the division of labour rather than breaking it.
 
-3. **It shows what the declared-activity factors are actually for.** A1 and A2 are close to worthless as predictors on day one. Their value is as a **baseline to be tested later**. That reframes methodology 11.3: expected activity should perhaps carry no weight at onboarding and considerable weight at the first refresh, when there is something real to compare it against.
+3. **The adverse reading still does not reach High**, which is the ceiling problem stated above rather
+   than a property of this customer.
 
-4. **Thirty months is the number that should be remembered.** The control that eventually worked, an internal recommendation to exit, was not the model. No risk rating fixes a thirty-month gap between a decision and an action.
+
 
 ---
 
-*Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice records. It is not a claim about what the firm's file actually contained, and it is not a criticism of any individual. The purpose is to test a model, not to re-try a case.
+*Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice
+records. It is not a claim about what the firm's file actually contained, and it is not a criticism of
+any individual. The purpose is to test a model, not to re-try a case.
