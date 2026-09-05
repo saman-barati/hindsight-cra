@@ -73,8 +73,6 @@ to the worst defensible level and still moves the score by less than a quarter o
    also mixes two dimensions — how the customer arrived, and whether a check was done — which is why it
    reads as if it covers something it does not.
 
-
-
 ---
 
 *Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice

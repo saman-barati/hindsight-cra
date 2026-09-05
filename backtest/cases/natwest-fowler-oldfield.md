@@ -98,8 +98,6 @@ permits.
    squarely in the level definition. Step 5 recommends tying the level to registration. The Stunt & Co
    case file records the argument against doing so.
 
-
-
 ---
 
 *Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice

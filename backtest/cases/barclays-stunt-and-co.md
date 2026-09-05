@@ -29,12 +29,6 @@ score it. A customer risk rating is a statement about the information on a file 
 made without knowing how anything turns out. This case makes that unusually clear, and the rating
 below is a fact about a form, not about a person.
 
-**This case file has been rebuilt.** The first version treated the relationship as an empty file, on the
-reasoning that the FCA's finding was that Barclays had not asked enough questions, and scored every
-unasked question at its benign level. That was wrong, and it was wrong in the direction that flattered
-the model: the Final Notice records a good deal of what the application form actually said, and reading
-it produces a different answer. The earlier version is in the version history below.
-
 ## What the notice settles
 
 From the Final Notice of 14 July 2025:
@@ -108,13 +102,6 @@ emerged later.
    notice does not record what the unreviewed results contained. The library has no level for a check
    that was performed and not reviewed, which is not the same as a clear result. That is a gap in the
    library, recorded at methodology 11.10.
-
-### Version history of this case file
-
-| Version | Change |
-|---|---|
-| 0.1 | Reconstructed as a thin file: C3 read as "general trade", A5 as consistent, turnover at the pre-amendment figure. Scored 1.70 and rated **Low**. |
-| 0.2 | Rebuilt from the Final Notice after an external review pointed out that paragraphs 4.20, 4.24 and 4.35 record what the file said. C3 is a high-value dealer, A5 is unresolved, and the case is rated **High** on the day the account opened. The earlier version's conclusion — that the model cannot rate a file nobody filled in — was drawn from a file that had in fact been filled in, and has been withdrawn. The underlying gap is real and is now argued from the C5 point at 5 above rather than from this case as a whole. |
 
 ---
 

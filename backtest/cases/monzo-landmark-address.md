@@ -70,8 +70,6 @@ artefact.
    The category scores 2.95, against 1.70 for expected activity. Digital onboarding with single-source
    electronic verification is doing more work than the landmark address.
 
-
-
 ---
 
 *Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice

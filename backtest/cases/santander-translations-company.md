@@ -21,16 +21,18 @@ accounts. The bank's own anti-money laundering team recommended closing the acco
 decision to close was taken in April 2015, and the account was not closed until September 2015 —
 **eighteen months** after the recommendation.
 
-Two things in the notice matter more than that story, and an earlier version of this case file missed
-both.
+Two things in the notice matter more than that story.
 
 **The customer operated a money service business, and Santander did not identify it as one at
 onboarding.** The FCA's finding is that the firm failed to verify the nature of the business. That is
 not a monitoring failure a rating could never have reached. It is a failure of the input the rating
 depends on.
 
-**And this is the large customer.** Roughly £298 million passed through the accounts of six money
-service business customers; about **£269 million of it through this one**.
+**The scale of it.** Roughly £298 million passed through the accounts of six money service business
+customers before they were closed, the largest single account accounting for about £269 million. This
+case file does **not** assert that this customer is that account. The notice anonymises its customers
+and I have not established which letter this one carries, so the £269m figure is context for the
+population these findings come from, not a fact about this reconstruction.
 
 ## What the notice settles
 
@@ -49,7 +51,7 @@ notice says was missing: the business identified as a money service business, wh
 factor C3. Three other factors move with it, because a money service business sending occasional
 international payments is a different profile from a translation agency.
 
-| Factor | Favourable reading | Adverse reading |
+| Factor | The file as recorded | With the business verified |
 |---|---|---|
 | C3 Industry or occupation | General trade (3) | **MSB, TCSP or HVD (5)** |
 | P3 International payment functionality | Enabled, unused (2) | **Occasional payments (3)** |
@@ -58,7 +60,7 @@ international payments is a different profile from a translation agency.
 
 ## What the model says
 
-| | Favourable reading | Adverse reading |
+| | The file as recorded | With the business verified |
 |---|---|---|
 | Weighted score | 1.9250 | 2.1775 |
 | Rounded | 1.93 | 2.18 |
@@ -81,24 +83,10 @@ international payments is a different profile from a translation agency.
    verified, none of it matters: the model faithfully scores what it is given. Recorded at methodology
    11.15, and it is the single most useful thing the back-test produced.
 
-3. **An earlier version of this case file said the opposite**, and said it confidently: that the
-   customer was rated correctly, that this was purely a monitoring failure, and that no customer risk
-   rating could reach that far. That was written from the press release and the narrative rather than
-   from the notice. It is the same mistake this project already made once with Stunt & Co, caught the
-   second time by a pre-publication review rather than by me. It has been withdrawn; see the version
-   history below.
-
-4. **The second half of the failure stands.** The declared £5,000 a month sits at A1 and nothing in the
+3. **The second half of the failure stands.** The declared £5,000 a month sits at A1 and nothing in the
    model ever compares it with what the account received. That comparison belongs to transaction
    monitoring and to the event-driven review triggers at methodology 7.2. The eighteen months between an
    internal recommendation to close and the closure belong to neither.
-
-### Version history of this case file
-
-| Version | Change |
-|---|---|
-| 0.2 | Reconstructed from the press release: a translation agency expecting £5,000 a month, scored Low, and concluded that the model was right and the failure was entirely in monitoring. |
-| 0.3 | Rebuilt from the Final Notice after a pre-publication review. The notice records the customer as a money service business that was not identified as one at onboarding, and as the ~£269m account. The favourable/adverse pair is replaced with a recorded/verified pair, A1 corrected from level 1 to level 2, and the conclusion reversed: verified, this customer is High on day one. |
 
 ---
 

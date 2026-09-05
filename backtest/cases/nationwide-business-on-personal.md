@@ -67,8 +67,6 @@ about a tenth of a point. Both readings are Low.
 3. **A back-test that only ever confirmed the model would be worthless.** This case is here because it
    is the one where the model is right and the interesting failure is somewhere else entirely.
 
-
-
 ---
 
 *Reconstruction, not a finding.* This case file rebuilds a customer from what a published FCA notice
