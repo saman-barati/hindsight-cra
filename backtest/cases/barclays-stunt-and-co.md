@@ -1,7 +1,7 @@
 # Barclays Bank plc and Stunt & Co
 
 **Document reference:** HND-CRA-007
-**Version:** 0.2
+**Version:** 0.3
 **Author:** Saman Barati
 **Date:** September 2026
 
@@ -14,10 +14,20 @@
 
 ## What happened
 
-Barclays provided banking services to Stunt & Co, which received **£46.8 million from Fowler
-Oldfield** in electronic transfers between July 2015 and August 2016 — the same laundering operation
-that produced the NatWest prosecution. The FCA found that Barclays did not gather enough information at the start of the
-relationship and did not carry out proper ongoing monitoring.
+**Read this first.** Paragraph 2.7 of the Final Notice records that **on 4 March 2025 James Stunt was
+acquitted** of money laundering charges in relation to monies received by Stunt & Co from Fowler
+Oldfield, "on the basis that he had no knowledge or suspicion that those monies were criminal
+property". Paragraph 4.138 records the same. The FCA's findings in this notice are about **Barclays'
+controls**, and nothing in this case file should be read as saying anything else.
+
+The notice records that Stunt & Co received **£46.8 million from Fowler Oldfield** in electronic
+transfers between July 2015 and August 2016. The FCA found that Barclays did not gather enough
+information at the start of the relationship and did not carry out proper ongoing monitoring.
+
+The case is here for one narrow reason: the notice reproduces enough of the account opening file to
+score it. A customer risk rating is a statement about the information on a file on a particular day,
+made without knowing how anything turns out. This case makes that unusually clear, and the rating
+below is a fact about a form, not about a person.
 
 **This case file has been rebuilt.** The first version treated the relationship as an empty file, on the
 reasoning that the FCA's finding was that Barclays had not asked enough questions, and scored every
@@ -27,18 +37,19 @@ it produces a different answer. The earlier version is in the version history be
 
 ## What the notice settles
 
-From the Final Notice of 16 July 2025:
+From the Final Notice of 14 July 2025:
 
 | Paragraph | What the bank held |
 |---|---|
-| 4.12 | Mr Stunt was director and sole shareholder; the account opened on **16 January 2015** |
+| 4.12 | A single director and sole shareholder; the account opened on **16 January 2015** |
 | 4.20(a) | The application recorded the business as **"Gold Refining & Trading"** |
-| 4.20(b) | An opening investment of **£1,500,000**, paid in from various accounts of Mr Stunt |
+| 4.20(b) | An opening investment of **£1,500,000**, paid in from the shareholder's own accounts |
 | 4.20(c) | Anticipated turnover of **£500,000, manually amended to £3 million** |
 | 4.20(d) | The company **"would not trade outside of the EU"** |
 | 4.24 | At a meeting on **27 January 2015**, eleven days after opening: gold sourced from West Africa, principally Ghana and Burkina Faso, sold to high net worth individuals in the Middle East |
-| 4.35 | Barclays **classified Stunt & Co as low risk**, with no recorded rationale |
+| 4.35 | Barclays **classified the customer as low risk**, with no recorded rationale |
 | 4.37 | Adverse media checks were run on 15 January 2015; there is **no evidence the results were reviewed** |
+| 2.7, 4.138 | The shareholder was **acquitted** of money laundering charges on 4 March 2025 |
 
 ## Where the readings differ
 

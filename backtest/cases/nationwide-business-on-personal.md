@@ -1,18 +1,17 @@
 # Nationwide and the personal account used for business
 
 **Document reference:** HND-CRA-007
-**Version:** 0.2
+**Version:** 0.3
 **Author:** Saman Barati
 **Date:** September 2026
 
 | | |
 |---|---|
 | **Firm** | Nationwide Building Society |
-| **Firm** | Nationwide Building Society |
 | **Penalty** | £44,078,500 (reduced from £62,969,297) |
 | **Date** | Final notice 11 December 2025, announced 12 December 2025 |
 | **Relevant period** | 1 October 2016 to 1 July 2021 |
-| **Source** | https://www.fca.org.uk/news/press-releases/fca-fines-nationwide-44m-failings-financial-crime-controls |
+| **Source** | https://www.fca.org.uk/publication/final-notices/nationwide-building-society-2025.pdf |
 
 ## What happened
 
@@ -21,8 +20,10 @@ account book, and did not adequately monitor transactions. It knew customers wer
 activity through personal accounts in breach of its terms and had no process to manage the financial
 crime risk that created.
 
-One customer received **24 fraudulent Covid furlough payments** totalling £27.36 million. HMRC seized
-£26.54 million; £820,687 was not recovered.
+One customer received **24 fraudulent Covid furlough payments** under the Job Retention Scheme. The
+notice records the 24 payments as totalling **£1.35 million over thirteen months**, followed by a
+further **£26.01 million over eight days** (2.17). HMRC seized £26.54 million; £820,687 was not
+recovered.
 
 ## What the notice settles
 

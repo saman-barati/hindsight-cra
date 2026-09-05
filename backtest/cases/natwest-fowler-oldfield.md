@@ -1,13 +1,12 @@
 # NatWest and Fowler Oldfield
 
 **Document reference:** HND-CRA-007
-**Version:** 0.2
+**Version:** 0.3
 **Author:** Saman Barati
 **Date:** September 2026
 
 | | |
 |---|---|
-| **Firm** | National Westminster Bank Plc |
 | **Firm** | National Westminster Bank Plc |
 | **Penalty** | £264,772,619.95 |
 | **Date** | Sentenced 13 December 2021, Southwark Crown Court, before Mrs Justice Cockerill |

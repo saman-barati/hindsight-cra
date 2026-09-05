@@ -1,17 +1,16 @@
 # Monzo and the landmark address
 
 **Document reference:** HND-CRA-007
-**Version:** 0.2
+**Version:** 0.3
 **Author:** Saman Barati
 **Date:** September 2026
 
 | | |
 |---|---|
 | **Firm** | Monzo Bank Ltd |
-| **Firm** | Monzo Bank Ltd |
 | **Penalty** | £21,091,300 (reduced from £30,130,475) |
-| **Date** | Final notice 8 July 2025 |
-| **Source** | https://www.fca.org.uk/news/press-releases/fca-fines-monzo-21m-failings-financial-crime-controls |
+| **Date** | Final notice 7 July 2025 |
+| **Source** | https://www.fca.org.uk/publication/final-notices/monzo-bank-limited.pdf |
 
 ## What happened
 
