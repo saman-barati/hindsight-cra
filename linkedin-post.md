@@ -7,31 +7,29 @@ Put the repository link in the **first comment**, not in the post body.
 
 ## Post text
 
-*2993 characters. LinkedIn's limit is 3,000, and the first draft of this post ran to 3,732 —
-which is why it is shorter than the repository documents it summarises. Plain text: LinkedIn does not
-render markdown, so asterisks would show as asterisks.*
+*2705 characters, against LinkedIn's 3,000 limit. Plain text: LinkedIn does not render markdown.
+No self-introduction — the headline on the profile already says who I am, and repeating it in a
+personal post is the thing that makes a post read as written by someone else.*
 
-I built a customer risk model, tested it against the customers who actually caused UK banks to be fined, published it — then handed it to an AI and told it to find everything wrong with it.
+I built a customer risk model, tested it on the customers who actually got UK banks fined, published it, and then gave the whole thing to an AI and told it to find everything wrong with it.
 
-It found 41 things. Most were right. One inverted a conclusion I had published.
+41 findings came back. Most of them were right. One turned a conclusion I'd already published upside down.
 
-I'm a final-year Accounting and Finance student moving towards financial crime compliance. I wanted to see how a customer risk assessment actually reaches a decision, so I built one — 20 risk factors mapped to regulation 18(2)(b) of the MLRs, every weight with a written rationale and a published source — and rebuilt six customers from FCA notices as they looked on the day each bank took them on.
+The model is 20 risk factors mapped to regulation 18(2)(b) of the MLRs, every weight carrying a written rationale and a published source, plus six customers rebuilt from FCA notices as they looked on the day each bank onboarded them.
 
-Three things I would want a compliance team to see.
+I'd reconstructed Barclays' Stunt & Co as an almost empty file, on the logic that the FCA's finding was that nobody had asked enough questions. The Final Notice actually records a good deal of what the application form said: gold refining and trading, a turnover figure of £500,000 manually amended to £3 million, and a statement that the company wouldn't trade outside the EU. Rebuild the file from those paragraphs and my model rates the customer High on the day the account opened.
 
-The reconstruction I got wrong. I had built Barclays' Stunt & Co as an empty file, reasoning that the FCA's finding was that not enough information had been gathered. The reviewer read the Final Notice properly. It records what the application form said — gold refining and trading, turnover of £500,000 manually amended to £3 million, and that the company would not trade outside the EU. Rebuilt from those paragraphs, my model rates it High on the day the account opened.
+Which is awkward, because I'd already written up a change that would have removed that. I wanted the high-value-dealer level to turn on registration rather than on a description of the trade. A gold trader declaring no cash wouldn't have been registered. So my improvement takes the one customer the model caught and drops it to Medium. I had tested that fix against the case that motivated it and never asked what else it touched.
 
-The fix I had already recommended would have removed that. I had written up a change tying the high-value-dealer level to registration rather than to a description of the trade. A gold trader declaring no cash would not have been registered, so my improvement would have taken the one customer the model caught from High down to Medium. I wrote a fix, tested it on the case that motivated it, and never asked what else it touched.
+The third one stung more. I'd reported that none of the six reaches High on the arithmetic. True, but none of them could have. The facts each notice settles pin 41% to 69% of the model's weight at level 1 before anyone makes a judgement call, so the ceiling on any reconstruction is 3.37 against a threshold of 3.50. The test could not have produced another answer. That is now the first thing the back-test says about its own results.
 
-My headline finding was guaranteed by its inputs. I had reported that none of the six reaches High on the arithmetic. True — and none of them could have. The facts each notice settles pin 41% to 69% of the model's weight at level 1 before any judgement is made, so the highest score any reconstruction could reach is 3.37, against a threshold of 3.50. That is now the first thing the back-test says about its own results.
+Three of the 41 were wrong and I've argued back rather than accepted them.
 
-Three of the 41 findings were wrong, and I have answered those rather than accepted them.
+Then, before publishing any of it, I went through every external fact against the primary document instead of against my own notes. Nine were off. None invented, all nine real facts that had drifted somewhere between the notice and my draft. An interval I'd called thirty months was eighteen. Something I'd attributed to the customer was the bank's own assumption about itself. Those are in the repository with their corrections. It seemed like the wrong project to quietly fix them in.
 
-Then I checked every external fact against the primary document rather than against my notes. Nine were wrong. None invented — all nine real facts that had drifted. An interval I had called thirty months was eighteen. A finding I had attributed to the customer was the bank's own assumption about itself. Those are listed with their corrections in the repository, because a project arguing that citations should be checkable ought to show what happened when someone checked them.
+Synthetic data, a fictional bank, no professional experience claimed and no independent validation by a person.
 
-Synthetic data, a fictional bank, no professional experience claimed, and no independent validation by a person. It is a learning project, and the point was to find where my own reasoning was wrong.
-
-If you work in financial crime compliance and think I still have something backwards, I would like to hear it.
+If you do this for a living and think I've still got something backwards, tell me.
 
 #AML #FinancialCrime #Compliance #KYC #ModelValidation
 
