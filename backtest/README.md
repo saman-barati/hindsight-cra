@@ -66,7 +66,7 @@ settle were pushed to 5.
 
 **It cannot show that these customers should have scored High on the arithmetic.** Read the ceiling
 column. The highest ceiling of any of the six is **3.40**, and the High band begins at 3.50. The
-facts the notices settle pin between 41% and 69% of the model's weight at level 1 before a single
+facts the notices settle pin between 40% and 69% of the model's weight at level 1 before a single
 judgement is made: for the four business customers, a UK company with UK owners onboarded in branch on
 documents seen face to face; for Monzo and Nationwide, an ordinary UK personal customer with no
 international activity, which pins even more. A test
@@ -130,11 +130,10 @@ weight. It moves the score by 0.045.
 
 ### 4. The model can be right and still be wrong, because it scores what it is given
 
-Santander's customer is the sharpest thing in this back-test and it took two attempts to see it.
+Santander's customer is the sharpest thing in this back-test.
 
-The application form said "Translation service". Scored from that form the customer is **Low**, and an
-earlier version of this file concluded that the model had got it right and the failure was entirely in
-monitoring. The notice says otherwise: the customer operated a **money service business**, and
+The application form said "Translation service". Scored from that form the customer is **Low**. The
+notice records something the form did not: the customer operated a **money service business**, and
 Santander did not identify that at onboarding. Verified, the same customer is **High** on day one,
 through the same escalator as findings 1 and 2.
 
@@ -176,8 +175,8 @@ Every level recorded in the `Backtest` sheet traces to one of these, and nothing
 
 Note that the two Barclays matters are **two entities and two separate final notices**: Barclays Bank
 Plc for Stunt & Co, Barclays Bank UK Plc for WealthTek. They are announced together in one press
-release, which is where the "£42 million" headline figure comes from, and citing one notice for both
-is a mistake this project made in an earlier version.
+release, which is where the "£42 million" headline figure comes from. One notice is not authority for
+the other, and the two are cited separately throughout.
 
 ## Reading the workbook
 
