@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-009
-**Version:** 0.1
+**Version:** 0.2
 **To:** Money Laundering Reporting Officer, for the Financial Crime Committee
 **From:** Saman Barati
 **Date:** September 2026
@@ -14,9 +14,13 @@
 
 1.1 Under the Money Laundering Regulations 2017 as they stood, a relationship involving a high-risk third country required enhanced due diligence automatically, and the United Kingdom's definition of a high-risk third country followed both of the FATF public statements: the *Call for Action* list and the *Increased Monitoring* list.
 
-1.2 The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 narrow that automatic trigger to the **Call for Action** list only. At the FATF plenary of 19 June 2026 that list held three jurisdictions; the Increased Monitoring list held 22.
+1.2 The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (**SI 2026/621**, made 9 June 2026, in force 21 days later) narrow that automatic trigger to the **Call for Action** list only. Regulation 19 of the instrument amends regulation 33 of the 2017 Regulations in three places: it substitutes "FATF call for action country" for "high-risk third country" at regulation 33(1)(b), and at regulation 33(3)(a) it defines that term as *"a country named on the list of High-Risk Jurisdictions subject to a Call for Action published by the Financial Action Task Force as such list has effect from time to time"*. At the FATF plenary of 19 June 2026 that list held three jurisdictions; the Increased Monitoring list held 22.
 
 1.3 The effect is that a customer connected to any of those 22 jurisdictions no longer attracts enhanced due diligence by operation of law. The obligation to apply a risk-based approach is unchanged, and regulation 33 still requires enhanced measures wherever the firm identifies a high risk. What has gone is the automatic trigger.
+
+1.4 Two features of the drafting matter for how this firm should respond. The definition now tracks the FATF list **as it has effect from time to time**, so the population in scope changes at each plenary without any UK instrument and without anyone at this firm deciding anything — which is the argument for the monitoring at section 6.1. And regulation 20 of the same instrument inserts a new **regulation 34A**, extending mandatory enhanced due diligence to cryptoasset exchange providers, custodian wallet providers and correspondent relationships, in force **1 February 2027**. That is outside the scope of this note — Northgate does not offer those services — but it is the reason the instrument should not be described as a relaxation. It narrows one trigger and adds another.
+
+1.5 An earlier version of this note was written against the draft instrument and a law firm's commentary on it. It has been rewritten against the made version. The substance did not change; the citation did, and a note whose whole argument rests on one instrument should not have been resting on a summary of it.
 
 ## 2. What it means for this book
 
@@ -74,13 +78,25 @@ Measured on the current population of 400 customers.
 
 7.1 It is written against a synthetic population of 400 customers with 11 in scope. On a real book the numbers would differ and the cost comparison in section 4 could reverse.
 
-7.2 The exact wording and commencement of the amending instrument should be confirmed against the made version on legislation.gov.uk before any policy is changed on the strength of this note.
+7.2 It reads regulation 19 of SI 2026/621 as narrowing the automatic trigger and nothing more. It does not attempt to assess the new regulation 34A, or the amendments to regulation 19 of the 2017 Regulations (policies, controls and procedures) in the same instrument, both of which a full impact assessment would have to cover.
+
+7.3 It says nothing about the timing risk. The narrowing is in force now; regulation 34A is not in force until 1 February 2027. A firm that reads this instrument as a single relaxation and resources accordingly will be short of capacity in eighteen months.
 
 ---
 
 ## Sources
 
 - The Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017 (SI 2017/692), as amended — https://www.legislation.gov.uk/uksi/2017/692/contents
-- The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 — https://www.legislation.gov.uk/ukdsi/2026/9780348281743
+- The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (SI 2026/621), as made — https://www.legislation.gov.uk/uksi/2026/621/made
+- SI 2026/621, regulation 19 (amendment of regulation 33) — https://www.legislation.gov.uk/uksi/2026/621/regulation/19/made
 - FATF, *High-Risk Jurisdictions subject to a Call for Action*, 19 June 2026 — https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html
 - FATF, *Jurisdictions under Increased Monitoring*, 19 June 2026 — https://www.fatf-gafi.org/en/publications/High-risk-and-other-monitored-jurisdictions/increased-monitoring-june-2026.html
+
+---
+
+## Version history
+
+| Version | Date | Change |
+|---|---|---|
+| 0.2 | Sept 2026 | Rewritten against SI 2026/621 as made, rather than the draft instrument and commentary on it. Regulation 19's actual amendments to regulation 33 are quoted at 1.2; the dynamic reference to the FATF list and the insertion of regulation 34A are added at 1.4; section 7 is rewritten to say what the note does not cover rather than to ask for a check that has now been done. Figures re-run. |
+| 0.1 | Sept 2026 | First version, written against the draft instrument. |

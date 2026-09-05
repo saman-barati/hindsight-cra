@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-006
-**Version:** 0.4
+**Version:** 0.5
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion files:** `model/customer-risk-model.xlsx`, `data/synthetic-customers.csv`, `data/generation-notes.md`
@@ -29,11 +29,11 @@ Step 3 was supposed to be the mechanical step: load the data, apply the library,
 | `Customers` | The imported population, one row per customer |
 | `Scoring` | The engine: 400 rows × 20 lookups, then weighting, banding and escalation |
 | `Dashboard` | What the population looks like once scored, and how much work each category is doing |
-| `Checks` | Eighteen integrity tests |
+| `Checks` | Nineteen integrity tests |
 | `Backtest` | Step 4: six enforcement cases scored through the same library and weights |
 | `Validation` | Step 5: weight sensitivity, aggregation rules compared, and the 2026 EDD test |
 
-1.3 The workbook contains 19,351 formulas and no hardcoded results. Every score, weight, band and rating recalculates if the population or a weight changes.
+1.3 The workbook contains 19,546 formulas and no hardcoded results. Every score, weight, band and rating recalculates if the population or a weight changes.
 
 ## 2. How a rating is produced
 
@@ -88,17 +88,19 @@ Change the path on the second line to wherever the repository sits. Everything e
 
 | | Customers | Share |
 |---|---|---|
-| Low | 295 | 73.8% |
-| Medium | 65 | 16.2% |
-| High | 40 | 10.0% |
+| Low | 295 | 73.75% |
+| Medium | 62 | 15.50% |
+| High | 43 | 10.75% |
 
-**Every one of those 40 High ratings came from a mandatory escalator. Not one customer in 400 reached the High band on the arithmetic.**
+**Every one of those 43 High ratings came from a mandatory escalator. Not one customer in 400 reached the High band on the arithmetic.**
+
+Three of the 43 arrive there because of a correction made after external review: escalator 5.3(d) covers nominee shareholders and bearer shares, level 5 of factor C1 covers trusts, nominee arrangements and overseas incorporation, and the model was firing 5.3(d) on factor C2 only. It now fires on C1 level 5 as well. Methodology 11.9a explains why that was applied without approval when nothing else on the recommendation list has been.
 
 The highest overall score anywhere in the population is **2.76**. The High band starts at 3.50.
 
 ### 4.2 Why that happens
 
-It is not a coding error, and the workbook's eighteen checks all pass. It is arithmetic. Working down from the heaviest factor, **the nine heaviest factors would all have to score 5, with every one of the remaining eleven at 1, for a customer to reach exactly 3.50.** A weighted average over 20 factors pulls hard towards the middle: a customer has to be simultaneously bad on almost everything before the average moves, and real customers are bad on two or three things at once, not nine.
+It is not a coding error, and the workbook's nineteen checks all pass. It is arithmetic. **Nine factors would have to score 5, with every one of the remaining eleven at 1, for a customer to reach exactly 3.50.** The nine heaviest carry 62.5% of the effective weight between them, and 1 + 4 x 0.625 = 3.50 exactly. Nine is the count rather than a unique set: G2, P2 and P3 all carry 5%, so any one of the three fills the ninth place and the other two sit at 1. A weighted average over 20 factors pulls hard towards the middle: a customer has to be simultaneously bad on almost everything before the average moves, and real customers are bad on two or three things at once, not nine.
 
 Methodology 10.5 already said that a weighted average dilutes single severe factors by design, and that the escalator list is the compensating control. What Step 3 shows is how complete that dilution is. The escalators are not a compensating control at the margin; on this population they are doing **all** of the work at the top of the scale.
 
@@ -106,11 +108,11 @@ Methodology 10.5 already said that a weighted average dilutes single severe fact
 
 | Category | Weight | Mean | Std dev | Share of customers at the category minimum |
 |---|---|---|---|---|
-| Customer | 30% | 1.46 | 0.485 | 33.2% |
-| Geography | 25% | 1.16 | 0.302 | **69.5%** |
-| Product and service | 20% | 2.42 | 0.688 | 1.8% |
-| Delivery channel | 10% | 2.67 | 0.538 | 1.0% |
-| Expected activity | 15% | 1.76 | 0.530 | 6.5% |
+| Customer | 30% | 1.46 | 0.486 | 33.25% |
+| Geography | 25% | 1.16 | 0.302 | **69.50%** |
+| Product and service | 20% | 2.42 | 0.689 | 1.75% |
+| Delivery channel | 10% | 2.67 | 0.538 | 1.00% |
+| Expected activity | 15% | 1.76 | 0.531 | 6.50% |
 
 Factor G1, country of residence, takes **one single value across all 400 customers**, because methodology 2.2 puts non-UK residents outside the Bank's perimeter. G1 alone carries 10% of the model's effective weight and separates nobody from anybody.
 
@@ -122,7 +124,7 @@ This is the concern recorded at methodology 11.1, now with a number against it.
 |---|---|---|---|---|
 | Personal | 300 | 280 | 0 | 20 |
 | Sole trader | 60 | 15 | 36 | 9 |
-| Limited company | 40 | 0 | 29 | 11 |
+| Limited company | 40 | 0 | 26 | 14 |
 
 Not one personal customer was rated Medium. The highest-scoring personal customer who was not escalated scores exactly **2.00**, which is the top of the Low band to the penny. Every personal customer is therefore either Low, or High because an escalator fired. For three quarters of the book the model is not a three-band scale at all; it is a switch.
 
@@ -134,13 +136,15 @@ Not one personal customer was rated Medium. The highest-scoring personal custome
 
 Eight customers are in a cash-intensive sector **and** expect more than 30% of their credits in cash, and no escalator applies to any of them. All eight are rated Medium. The highest scores 2.21.
 
-That is the same fact pattern as the worked example at methodology 5.6, which scored 2.07, and it is the question Step 4 answers. It does: see [`backtest/README.md`](../backtest/README.md), where six customers who caused roughly £480m of UK enforcement penalties are all rated Low by the arithmetic.
+That is the same fact pattern as the worked example at methodology 5.6, which scored 2.07, and it is the question Step 4 answers — though not as cleanly as this sentence originally claimed. See [`backtest/README.md`](../backtest/README.md). Six customers named in FCA notices carrying roughly £480m of penalties between them are rebuilt there; none reaches High on the arithmetic, and none of them could have, because the facts the notices settle pin between 41% and 69% of the model's weight at level 1 before any judgement is made.
 
 ## 5. What this does not prove
 
 5.1 The population is synthetic and its factors are drawn independently within a segment (`data/generation-notes.md`, section 6). Real customers correlate, so a real book would have a longer right tail than this one. The compression in 4.2 would be less severe, but it would not disappear: the arithmetic in 4.2 does not depend on the population at all.
 
-5.2 The distributions are my judgement. Change them and the band counts change. What does **not** change with the distributions is that G1 has one value, that the nine heaviest factors must all be at 5 to reach 3.50, and that a weighted average compresses. Those are properties of the model, not of the data.
+5.2 The distributions are my judgement. Change them and the band counts change. What does **not** change with the distributions is that G1 has one value, that nine factors must be at 5 to reach 3.50, and that a weighted average compresses. Those are properties of the model, not of the data.
+
+5.2a **Everything else in section 4 is a property of the population.** Added after external review, which asked for every place this project states a population property as a model property. The list, so it is in one place: "no personal customer is rated Medium" (4.4) follows from the distributions chosen for personal customers in `data/generation-notes.md`, not from the model; so do the band shares in 4.1, the category means and standard deviations in 4.3 apart from G1's single value, the 37 customers near the boundary in 4.5, and the eight uncaught cash-intensive customers in 4.6. Change the distributions and every one of those numbers changes. They are reported because they show what the model does to *a* plausible book, and the README states them more strongly than it should have; that has been corrected too.
 
 5.3 Nothing here says the ratings are wrong. It says the arithmetic is not doing the job the methodology gives it. Whether the ratings are wrong is a question about real customers, and it belongs to Step 4.
 
@@ -159,6 +163,7 @@ That is the same fact pattern as the worked example at methodology 5.6, which sc
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | Sept 2026 | First run of the model on the 400-customer synthetic population. |
+| 0.5 | Sept 2026 | After external second-line review. Escalator 5.3(d) corrected to fire on C1 level 5, which moves three customers from Medium to High; every figure in section 4 re-run. The 3.50 arithmetic at 4.2 restated precisely (nine is a count, not a unique set). 5.2a added, listing the findings that are properties of the invented population rather than of the model. |
 | 0.4 | Sept 2026 | Validation sheet and the Step 5 scenario columns added; three further integrity checks. Section 4 figures unchanged. |
 | 0.3 | Sept 2026 | Backtest sheet added for Step 4, and three further integrity checks. Section 4 figures unchanged. |
 | 0.2 | Sept 2026 | Re-run after the pre-Step-4 review corrected the C2 and C3 level 5 definitions. Every figure in section 4 is unchanged, because the correction was to wording rather than to any score. Document reference corrected from HND-CRA-005 to HND-CRA-006. |
