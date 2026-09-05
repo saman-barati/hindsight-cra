@@ -83,10 +83,10 @@ Read across: the probability that a customer in each segment was assigned that l
 | G1 | Weaker AML, unlisted | 3 | - | - | - |
 | G1 | FATF increased monitoring | 4 | - | - | - |
 | G1 | FATF call for action | 5 | - | - | - |
-| G2 | UK only | 1 | 93.0% | 90.0% | 86.0% |
-| G2 | Second residence, unlisted | 2 | 5.5% | 7.5% | 10.0% |
-| G2 | Second residence, monitored | 4 | 1.2% | 2.0% | 3.0% |
-| G2 | Second residence, call for action | 5 | 0.3% | 0.5% | 1.0% |
+| G2 | UK tax residence only | 1 | 93.0% | 90.0% | 86.0% |
+| G2 | Further tax residence, unlisted | 2 | 5.5% | 7.5% | 10.0% |
+| G2 | Further tax residence, monitored | 4 | 1.2% | 2.0% | 3.0% |
+| G2 | Further tax residence, call for action | 5 | 0.3% | 0.5% | 1.0% |
 | G3 | UK only | 1 | 84.0% | 68.0% | 52.0% |
 | G3 | Unlisted countries | 2 | 12.0% | 20.0% | 26.0% |
 | G3 | Weaker AML, unlisted | 3 | 3.0% | 8.0% | 14.0% |
