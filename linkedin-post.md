@@ -7,27 +7,31 @@ Put the repository link in the **first comment**, not in the post body.
 
 ## Post text
 
-I built a customer risk model, tested it against the customers who actually caused UK banks to be fined, published the result — and then handed the whole thing to an AI and told it to find everything wrong with it.
+*2993 characters. LinkedIn's limit is 3,000, and the first draft of this post ran to 3,732 —
+which is why it is shorter than the repository documents it summarises. Plain text: LinkedIn does not
+render markdown, so asterisks would show as asterisks.*
 
-It found 41 things. Most of them were right. One of them inverted a conclusion I had already published.
+I built a customer risk model, tested it against the customers who actually caused UK banks to be fined, published it — then handed it to an AI and told it to find everything wrong with it.
 
-I'm a final-year Accounting and Finance student moving towards financial crime compliance. I wanted to understand how a customer risk assessment actually reaches a decision rather than read about the risk-based approach in the abstract, so I built one — 20 risk factors mapped to regulation 18(2)(b) of the MLRs, every weight carrying a written rationale and a published source — and rebuilt six customers from FCA notices as they looked on the day each bank took them on.
+It found 41 things. Most were right. One inverted a conclusion I had published.
 
-Three things I'd want a compliance team to see.
+I'm a final-year Accounting and Finance student moving towards financial crime compliance. I wanted to see how a customer risk assessment actually reaches a decision, so I built one — 20 risk factors mapped to regulation 18(2)(b) of the MLRs, every weight with a written rationale and a published source — and rebuilt six customers from FCA notices as they looked on the day each bank took them on.
 
-**The reconstruction I got wrong.** I had built Barclays' Stunt & Co as an empty file, on the reasoning that the FCA's finding was that not enough information was gathered. The reviewer read the Final Notice properly. It records what the application form said: gold refining and trading, turnover of £500,000 manually amended to £3 million, and a statement that the company would not trade outside the EU. Rebuilt from those paragraphs my model rates it High on the day the account opened.
+Three things I would want a compliance team to see.
 
-**And the fix I'd already recommended would have removed that.** I had written up a change tying the high-value-dealer level to registration rather than to a description of the trade, because the description is what makes another case ambiguous. A gold trader declaring no cash would not have been registered. So my improvement would have taken the one customer the model caught from High down to Medium. I wrote a fix, tested it on the case that motivated it, and never asked what else it touched.
+The reconstruction I got wrong. I had built Barclays' Stunt & Co as an empty file, reasoning that the FCA's finding was that not enough information had been gathered. The reviewer read the Final Notice properly. It records what the application form said — gold refining and trading, turnover of £500,000 manually amended to £3 million, and that the company would not trade outside the EU. Rebuilt from those paragraphs, my model rates it High on the day the account opened.
 
-**My headline finding was guaranteed by its inputs.** I had reported that none of the six reaches High on the arithmetic. True — and none of them could have. The facts each notice settles pin between 41% and 69% of the model's weight at level 1 before any judgement is made, so the highest score any reconstruction could reach is 3.37 against a threshold of 3.50. That is now the first thing the back-test says about its own results.
+The fix I had already recommended would have removed that. I had written up a change tying the high-value-dealer level to registration rather than to a description of the trade. A gold trader declaring no cash would not have been registered, so my improvement would have taken the one customer the model caught from High down to Medium. I wrote a fix, tested it on the case that motivated it, and never asked what else it touched.
 
-Three of the 41 findings were wrong, and I've answered those rather than accepted them — including one where two figures looked contradictory and were both right. The full disposition of all 41, with the working, is in the repository.
+My headline finding was guaranteed by its inputs. I had reported that none of the six reaches High on the arithmetic. True — and none of them could have. The facts each notice settles pin 41% to 69% of the model's weight at level 1 before any judgement is made, so the highest score any reconstruction could reach is 3.37, against a threshold of 3.50. That is now the first thing the back-test says about its own results.
 
-Then, before publishing, I checked every external fact in it against the primary document — each penalty, date, legal entity, quoted finding and regulation, against the FCA's own notices and legislation.gov.uk rather than against my notes. Nine things were wrong. Not one was invented; all nine were real facts that had drifted. An interval I'd called thirty months was eighteen. A finding I'd attributed to the customer was the bank's own assumption about itself. I'd cited one Barclays final notice for a case that has its own. Those are listed with the corrections in the repository too, because a project whose whole argument is that citations should be checkable ought to show what happened when someone checked them.
+Three of the 41 findings were wrong, and I have answered those rather than accepted them.
 
-Everything is in there: the method, the workbooks, the six case files, the 400-customer synthetic population, the 2026 EDD policy note, and the response document. Synthetic data, a fictional bank, no professional experience claimed. It's a learning project, and the point was to find out where my own reasoning was wrong.
+Then I checked every external fact against the primary document rather than against my notes. Nine were wrong. None invented — all nine real facts that had drifted. An interval I had called thirty months was eighteen. A finding I had attributed to the customer was the bank's own assumption about itself. Those are listed with their corrections in the repository, because a project arguing that citations should be checkable ought to show what happened when someone checked them.
 
-If you work in financial crime compliance and think I still have something backwards, I'd like to hear it.
+Synthetic data, a fictional bank, no professional experience claimed, and no independent validation by a person. It is a learning project, and the point was to find where my own reasoning was wrong.
+
+If you work in financial crime compliance and think I still have something backwards, I would like to hear it.
 
 #AML #FinancialCrime #Compliance #KYC #ModelValidation
 
