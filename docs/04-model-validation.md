@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-008
-**Version:** 0.1
+**Version:** 0.3
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion file:** `model/customer-risk-model.xlsx`, sheet `Validation`
@@ -85,7 +85,7 @@ Every rule in the table is a **final rating**, so the mandatory escalators at me
 
 **Rule A** is the model as built. It uses one of its three bands.
 
-**Rule B** keeps the weighted average and moves the boundaries to 1.60 and 2.20, which fall at the 40th and 88th percentiles of the population. All three bands are now used, and the High share of 18.5% is a workload a bank could plausibly resource.
+**Rule B** keeps the weighted average and moves the boundaries to 1.60 and 2.20, which fall at the 43rd and 88th percentiles of the population. All three bands are now used, and the High share of 18.5% is a workload a bank could plausibly resource.
 
 **Rule C** ignores the average and counts how many of the 20 factors score 4 or 5: none is Low, one or two is Medium, three or more is High. It is blunt, it is immune to dilution, and it puts 31.2% of the book in High.
 
@@ -97,7 +97,7 @@ Rules C and D put 31.2% and 31.8% of the book into High. Rule B puts 18.5% there
 
 **That threshold is not sourced.** There is no published figure for the share of a retail bank's book that can be held at High, and I did not find one. Regulation 33 says when enhanced due diligence is mandatory and regulation 18 requires the assessment to be proportionate to the firm's size and nature; neither gives a number, and neither would, because the answer depends on the firm. What I have is an intuition about cost, dressed as a constraint, and it is doing the decisive work in this section.
 
-Two things follow. The argument is still directionally right — an EDD population three times larger needs roughly three times the analyst headcount, and no firm resources a control by discovering afterwards that it cannot run it. But a reader should treat "rule B is the recommendation" as **the recommendation this analyst reaches given an assumption he cannot evidence**, and the first question a real second line would ask is what the firm's actual EDD capacity is. With that number, this section decides itself. Without it, section 5's priority order rests on a guess.
+Two things follow. The argument is still directionally right: rules C and D put roughly **1.7 times** as many customers into High as rule B does, and an EDD population 1.7 times larger needs something close to 1.7 times the analyst headcount. No firm resources a control by discovering afterwards that it cannot run it. But a reader should treat "rule B is the recommendation" as **the recommendation this analyst reaches given an assumption he cannot evidence**, and the first question a real second line would ask is what the firm's actual EDD capacity is. With that number, this section decides itself. Without it, section 5's priority order rests on a guess.
 
 **Rule B is the recommendation, on that basis and no firmer one.**
 
@@ -113,8 +113,10 @@ In priority order, with the evidence for each.
 | 4 | **Split PEP treatment so domestic PEPs and PEP family members are not automatically High.** | Regulation 35(3A) requires the starting point for a domestic PEP to be a *lower* level of risk than a non-domestic one. Escalator 5.3(a) treats a foreign PEP, a domestic PEP and a PEP's parent identically. |
 | 5 | **Add a file-completeness factor.** | Nothing in the library asks how much of the file is evidenced rather than asserted. **The Step 4 evidence for this was withdrawn — see 5.2.** |
 | 6 | **Reduce the geography weight.** | Section 3, and methodology 11.1. Genuine, but second-order until change 1 is made. |
+| 7 | **Split C1 level 5** into "trust or overseas incorporation, ownership evidenced" and "nominee or bearer". | Escalator 5.3(d) is written as a condition the recorded level cannot evaluate, so it currently fires on the whole level. Methodology 11.9a. |
+| 8 | **Add a level to C4 for the family and associates of a foreign PEP**, distinct from those of a domestic PEP. | Regulation 35(3A) requires the domestic starting point to be lower. The library now covers relatives of any PEP at level 3, but still cannot tell the two apart, so change 4 cannot be implemented without this. |
 
-Changes 1 and 2 are implemented in the workbook and tested below. Changes 3 to 6 are specified but not built.
+Changes 1 and 2 are implemented in the workbook and tested below. Changes 3 to 8 are specified but not built.
 
 ### 5.1 Change 3 is contested by the evidence for it
 
@@ -130,7 +132,7 @@ The underlying gap is still real and still unmeasured. The library has no level 
 
 ### 5.3 The boundaries in change 1 are fitted to a population I invented
 
-1.60 and 2.20 are the 40th and 88th percentiles of 400 customers whose distributions I chose in Step 3. Recommending boundaries derived from that population, and then testing them on the same population, is circular, and the circularity is at its worst exactly here — in the recommendation that section 3 says matters more than everything else in the model.
+1.60 and 2.20 are the 43rd and 88th percentiles of 400 customers whose distributions I chose in Step 3. Recommending boundaries derived from that population, and then testing them on the same population, is circular, and the circularity is at its worst exactly here — in the recommendation that section 3 says matters more than everything else in the model.
 
 What survives the circularity is the *method*, not the numbers: set boundaries from the observed distribution and check that all three bands are used. What does not survive is any claim that 1.60 and 2.20 are the right numbers for a real book. On a real book they would be different, and the first calibration exercise a firm ran would move them.
 
@@ -143,8 +145,8 @@ Rule B boundaries, plus A5 level 5 as an escalator. The same 13 reconstructions 
 | FO-lo | NatWest / Fowler Oldfield, favourable reading, cash-intensive trade | 1.82 | Low | **Medium** |
 | FO-mid | NatWest / Fowler Oldfield, same file, high-value dealer reading | 1.90 | High | **High** |
 | FO-hi | NatWest / Fowler Oldfield, adverse reading of the open factors | 2.26 | High | **High** |
-| SAN-lo | Santander UK / the translations company, favourable reading | 1.89 | Low | **Medium** |
-| SAN-hi | Santander UK / the translations company, adverse reading | 2.11 | Medium | **Medium** |
+| SAN-a | Santander UK / the translations company, the file as recorded | 1.93 | Low | **Medium** |
+| SAN-b | Santander UK / the translations company, with the business verified as an MSB | 2.18 | High | **High** |
 | STU-a | Barclays / Stunt & Co, the application file of 16 January 2015 | 2.14 | High | **High** |
 | STU-b | Barclays / Stunt & Co, the same file after the meeting of 27 January 2015 | 2.29 | High | **High** |
 | WTK-lo | Barclays / WealthTek, favourable reading | 1.83 | Low | **Medium** |
@@ -154,7 +156,7 @@ Rule B boundaries, plus A5 level 5 as an escalator. The same 13 reconstructions 
 | NAT-lo | Nationwide / the personal account used for business, favourable reading | 1.50 | Low | **Low** |
 | NAT-hi | Nationwide / the personal account used for business, adverse reading | 1.60 | Low | **Low** |
 
-**5 of the 13 rows change rating, all of them upwards** — three rows move from Low to Medium, two rows move from Low to High. The Monzo rows are the Low-to-High moves: the address that could not be true now decides the rating on its own. Rows already rated High by an escalator cannot move, which is 4 of the 13.
+**5 of the 13 rows change rating, all of them upwards** — three rows move from Low to Medium, two rows move from Low to High. The Monzo rows are the Low-to-High moves: the address that could not be true now decides the rating on its own. Rows already rated High by an escalator cannot move, which is 5 of the 13.
 
 ### 6.1 What this does not claim
 
@@ -195,7 +197,11 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 | 4 | Domestic PEPs and PEP family members not automatically High | Specified; not built |
 | 5 | File-completeness factor | Specified; evidence downgraded (5.2); not built |
 | 6 | Reduce the geography weight | Specified; deferred until change 1 |
-| — | Escalator 5.3(d) now fires on the whole of C1 level 5 | **Applied.** A defect fix, not a calibration change: the library said C1 level 5 triggered 5.3(d) where nominee shareholders or bearer shares were present, and the model never fired it at all. Three customers move to High. See methodology 11.9. |
+| 7 | Split C1 level 5 so 5.3(d) can be evaluated | Specified; not built |
+| 8 | A C4 level for the relatives of a foreign PEP | Specified; not built |
+| — | C4 level 3 reworded to cover the family and known close associates of **any** PEP | **Applied.** A defect fix: regulation 35(1) and escalator 5.3(a) both cover them, and the library's wording covered only the relatives of a domestic PEP, so a foreign PEP's relative had no level to be recorded at. No rating changes on this population. |
+| — | Escalator 5.3(b) reworded from "second residence" to "a further tax residence" | **Applied.** Documentation fix: factor G2 records tax residence, and the escalator and the population labels both said "second residence". No rating changes. |
+| — | Escalator 5.3(d) now fires on the whole of C1 level 5 | **Applied.** A defect fix, not a calibration change: the library said C1 level 5 triggered 5.3(d) where nominee shareholders or bearer shares were present, and the model never fired it at all. Three customers move to High. The proper fix, splitting C1 level 5 so the condition can be evaluated, is change 7. See methodology 11.9a. |
 | — | Escalator 5.3(b) reworded to cover payment corridors | **Applied.** The model always fired on G3 level 5; the written escalator said "established in", which the model does not test. Documentation corrected to match the control. No rating changes. |
 
 ---
@@ -204,5 +210,6 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 
 | Version | Date | Change |
 |---|---|---|
+| 0.3 | Sept 2026 | Second pre-publication review. Percentiles corrected to the 43rd and 88th; the workload ratio at 4.2 corrected from three times to 1.7; changes 7 and 8 added to section 5; two further defect fixes logged in section 9. |
 | 0.2 | Sept 2026 | Rewritten after an external second-line review. The back-test ceiling is stated at 1.3 before any conclusion rests on it; the unsourced workload limit is stated at 4.2 where it decides the answer; the circularity of the proposed boundaries is stated at 5.3 where they are recommended. Change 3 is marked contested, change 5's evidence is downgraded, and a PEP change is added at 4 for regulation 35(3A). All figures re-run after escalator 5.3(d) was corrected. |
 | 0.1 | Sept 2026 | First validation pack: distribution, sensitivity, aggregation rules, recommended changes. |

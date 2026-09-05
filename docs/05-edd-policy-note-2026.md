@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-009
-**Version:** 0.2
+**Version:** 0.3
 **To:** Money Laundering Reporting Officer, for the Financial Crime Committee
 **From:** Saman Barati
 **Date:** September 2026
@@ -52,7 +52,7 @@ Measured on the current population of 400 customers.
 |---|---|---|---|
 | A | Do nothing beyond the statutory minimum | 11 customers move from enhanced to standard due diligence | None, and the firm's exposure to 22 jurisdictions is managed by a score that cannot move a rating |
 | B | Keep the old trigger as firm policy | No change in treatment for anyone | Enhanced due diligence on 11 customers the law no longer requires it for, and no way to distinguish between the 22 jurisdictions |
-| C | Firm-policy escalator to Medium, not High | The 11 customers land at Medium: standard due diligence, source of funds where activity is inconsistent, three-year refresh | Roughly a third of option B's cost, and the difference between the 22 jurisdictions and the 3 is preserved |
+| C | Firm-policy escalator to Medium, not High | The 11 customers land at Medium: standard due diligence, source of funds where activity is inconsistent, three-year refresh | Materially less than option B; "roughly a third" is a placeholder, not a costed figure (5.2) |
 
 ## 5. Recommendation
 
@@ -60,11 +60,11 @@ Measured on the current population of 400 customers.
 
 5.2 Three reasons.
 
-- **It preserves the distinction the amendment was made to create.** Parliament narrowed the automatic trigger because treating 25 jurisdictions identically was disproportionate. Option B ignores that; option A over-corrects.
-- **It costs a third of option B.** Medium treatment on 11 customers, rather than High treatment on them.
+- **It preserves the distinction the amendment draws.** SI 2026/621 is made by the Treasury under delegated powers, and this note does not attempt to state the policy intention behind it — no explanatory memorandum is cited here. What the instrument plainly does is separate three jurisdictions from twenty-five. Option B ignores that separation; option A over-corrects for it.
+- **It is materially cheaper than option B**, because Medium treatment on 11 customers costs less than High treatment on the same 11. How much less depends on what this firm's enhanced due diligence actually costs per file, which the Bank has not given me. The "roughly a third" in section 4 is an order-of-magnitude placeholder and is labelled as one; it should be replaced with the firm's own figure before this note is acted on.
 - **It survives the band recalibration proposed in the validation pack.** A floor at Medium is expressed in bands, not in scores, so it does not need re-tuning when the boundaries move.
 
-5.3 The rule should be written as a floor rather than a weight. Increasing the geography weight would not achieve this: the validation pack shows a ten percentage point change to that weight moves fewer customers than the number affected here.
+5.3 The rule should be written as a floor rather than a weight. Increasing the geography weight would not achieve this, though not for the reason an earlier draft of this note gave. A ten percentage point change to the geography weight moves 16 to 26 customers, which is more than the 11 affected here, not fewer. The point is that it moves a **different** set: a weight change acts on everyone whose geography score is above the minimum, most of whom are not connected to a monitored jurisdiction at all, and it would still not guarantee that any particular one of these 11 crosses a boundary. A floor names the population it is meant to catch. A weight does not.
 
 ## 6. What to monitor
 
@@ -80,7 +80,7 @@ Measured on the current population of 400 customers.
 
 7.2 It reads regulation 19 of SI 2026/621 as narrowing the automatic trigger and nothing more. It does not attempt to assess the new regulation 34A, or the amendments to regulation 19 of the 2017 Regulations (policies, controls and procedures) in the same instrument, both of which a full impact assessment would have to cover.
 
-7.3 It says nothing about the timing risk. The narrowing is in force now; regulation 34A is not in force until 1 February 2027. A firm that reads this instrument as a single relaxation and resources accordingly will be short of capacity in eighteen months.
+7.3 It says nothing about the timing risk. The narrowing is in force now; regulation 34A is not in force until 1 February 2027, five months after the date of this note. A firm that reads the instrument as a single relaxation and resources accordingly will be short of capacity by then.
 
 ---
 
@@ -98,5 +98,6 @@ Measured on the current population of 400 customers.
 
 | Version | Date | Change |
 |---|---|---|
+| 0.3 | Sept 2026 | Second pre-publication review. The argument at 5.3 was false and is replaced. The "eighteen months" at 7.3 is five. The policy intention behind the instrument is no longer asserted, and the "roughly a third" cost figure is labelled as the placeholder it is. |
 | 0.2 | Sept 2026 | Rewritten against SI 2026/621 as made, rather than the draft instrument and commentary on it. Regulation 19's actual amendments to regulation 33 are quoted at 1.2; the dynamic reference to the FATF list and the insertion of regulation 34A are added at 1.4; section 7 is rewritten to say what the note does not cover rather than to ask for a check that has now been done. Figures re-run. |
 | 0.1 | Sept 2026 | First version, written against the draft instrument. |

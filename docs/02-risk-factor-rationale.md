@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-003
-**Version:** 0.3 (draft)
+**Version:** 0.5 (draft)
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion file:** `model/risk-factor-library.xlsx`
@@ -75,11 +75,11 @@ Everything here is judgement unless it cites a source. Where a number is judgeme
 
 6.2 **Where a declared figure straddles two levels, the higher level applies** (methodology 4.5). Without that rule, a customer declaring "£15,000 to £25,000 a month, about half in cash" could be scored two different ways by two people who agree on every fact.
 
-6.3 **C4 has no level 2.** PEP screening returns a match or it does not; there is no state of being slightly a politically exposed person. Inventing a level 2 to make the scale look symmetrical would have made the model less honest, not more complete.
+6.3 **Two factors have a missing level, which is why there are 98 definitions and not 100.** C4 has no level 2: PEP screening returns a match or it does not, and there is no state of being slightly a politically exposed person. G2 has no level 3: it records a further country of **tax residence**, and the FATF lists are the only gradation available to it — a jurisdiction is on one list, the other, or neither, and there is no "materially weaker supervision, unlisted" tier a declared tax residence could be sorted into without inventing one. In both cases, adding a level to make the scale look symmetrical would have made the model less honest rather than more complete.
 
 6.3a **C4's scale is wrong in a way that matters, and level 2 is not the problem.** Added after external review. The scale runs: no match (1), PEP family member or associate (3), domestic PEP (4), foreign PEP (5). Two defects follow.
 
-First, regulation 35(1) applies enhanced due diligence to a PEP **and** to a family member or known close associate of that PEP, and regulation 35(3A) requires the starting point for a **domestic** PEP to be a lower level of risk than for a non-domestic one. Level 3 collapses the parent of a UK local-authority officer and the son-in-law of a foreign head of state into one level. The distinction the regulation requires cannot be recorded, let alone acted on.
+First, regulation 35(1) applies enhanced due diligence to a PEP **and** to a family member or known close associate of that PEP, and regulation 35(3A) requires the starting point for a **domestic** PEP to be a lower level of risk than for a non-domestic one. Level 3 now reads "a family member or known close associate of a politically exposed person, domestic or foreign". It was originally written as "of a domestic PEP", which left a foreign PEP's relative with no level at all; that has been corrected as a defect fix. What level 3 still does is collapse the parent of a UK local-authority officer and the son-in-law of a foreign head of state into one level, so the distinction regulation 35(3A) requires cannot be recorded, let alone acted on.
 
 Second, and separately, escalator 5.3(a) rates every one of levels 3, 4 and 5 High, so even the distinction the scale does draw between a domestic and a foreign PEP changes nothing in the output. Methodology 11.13 records this as a defect and the validation pack recommends the fix. It is unapplied because it is a change to an escalator.
 
@@ -139,7 +139,8 @@ The fix is definitional rather than mechanical. C2 level 5 is now exactly the 5.
 
 | Version | Date | Change |
 |---|---|---|
-| 0.1 | Sept 2026 | First draft, issued with `model/risk-factor-library.xlsx` v0.1. |
+| 0.5 | Sept 2026 | Second pre-publication review. 6.3 rewritten to cover both missing levels, C4 level 2 and G2 level 3. 6.3a corrected: C4 level 3 covered only the relatives of a domestic PEP. |
 | 0.4 | Sept 2026 | Every citation in Appendix A checked against the primary source before publication. Corrections: the de-risking passage is now quoted in the FCA's own words from the correct URL and identified as a webpage; FG25/3 given its real title and dates; the JMLSG edition dated; the NRA given its correct publisher, date and URL; the FATF statements given their plenary date and per-list URLs; and the Monzo and Barclays Bank UK final notices cited directly rather than through the press release. |
 | 0.3 | Sept 2026 | After external second-line review. 5.2 corrected: nationality is protected as an aspect of race under section 9(1)(b) of the Equality Act 2010, not as a protected characteristic in its own right. 6.3a added on the C4 scale and regulation 35(3A). 8.2a added: checks 11 and 12 cannot fail independently of checks 1 to 3, 9 and 10, and are retained for what they test about the aggregation rather than about the levels. |
 | 0.2 | Sept 2026 | Review before Step 4. C2 and C3 level 5 redefined so that a score of 5 matches its escalator exactly (6.4). The unverified claim that the NRA 2025 rates the accountancy sector and TCSPs high risk was removed and replaced with what the NRA actually states. FG17/6 citation updated to note FG25/3 (July 2025). Document reference corrected from HND-CRA-002 to HND-CRA-003. |
+| 0.1 | Sept 2026 | First draft, issued with `model/risk-factor-library.xlsx` v0.1. |

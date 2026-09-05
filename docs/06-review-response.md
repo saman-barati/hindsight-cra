@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-010
-**Version:** 0.1
+**Version:** 0.3
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion files:** every document and workbook in this repository
@@ -25,9 +25,9 @@ A review from a language model is worth nothing if the model is pattern-matching
 |---|---|---|---|
 | C1 | The effective weight of factor A5 across the whole model | 1.50% | Correct |
 | C2 | The weighted score for back-test row FO-a, to four decimal places | 1.8225 | Correct |
-
-(That row is now labelled `FO-lo`; the file and the score are unchanged.)
 | C3 | How many of the 98 level definitions carry a mandatory escalator reference | 10 | Correct |
+
+The row put to the reviewer as `FO-a` is now labelled `FO-lo`; the file and the score are unchanged.
 
 C2 is the one that matters. It cannot be answered without multiplying twenty scores by twenty weights and adding them up, and it cannot be guessed to four decimal places. Getting it right is evidence that the reviewer read the appendix rather than the prose.
 
@@ -239,7 +239,7 @@ claims its citations are checkable should show what happened when they were chec
 | 5 | The WealthTek case cited the Barclays Bank Plc final notice | WealthTek is **Barclays Bank UK Plc** and has its **own** final notice. Two entities, two notices, one press release. Citing one for both is exactly the error a reader can check in thirty seconds. |
 | 6 | £298 million passed through "problem business accounts" at Santander | Six **Money Service Business** customers, roughly £269 million of it a single customer. |
 | 7 | A high value dealer accepts cash payments of "€10,000 or more" (regulation 14) | The threshold was redenominated to **£10,000** by regulation 9 of SI 2026/621 with effect from 30 June 2026, and the test is "makes or receives... at least £10,000". |
-| 8 | Various "July 2025" and "December 2025" dates | Final notices: Monzo 8 July 2025, both Barclays 14 July 2025 (announced 16 July), Nationwide 11 December 2025 (announced 12 December). |
+| 8 | Various "July 2025" and "December 2025" dates | Final notices: both Barclays 14 July 2025 (announced 16 July), Nationwide 11 December 2025 (announced 12 December). **The Monzo and Santander dates given in this row were themselves still wrong when it was written — see 10.3.** |
 | 9 | The de-risking passage was part quotation, part paraphrase, presented as one quotation | Both sentences are now quoted in the FCA's own words, from the correct URL, and identified as a webpage rather than finalised guidance. |
 
 Two things survived the check that I had expected to lose. The £480 million total is correct arithmetic
@@ -254,11 +254,66 @@ sentence, a source cited one level too far from the document that actually says 
 happens when you write from notes instead of from the notice, and it is the failure mode a reader can
 catch fastest.
 
+## 10. The second review, and what it found in the corrections
+
+Section 9 says nine facts had drifted and that all nine were real facts rather than invented ones. Both
+statements were true. What section 9 implied — that the checking was now finished — was not.
+
+The finished repository was reviewed once more before anything was announced. That review found nine
+further problems, three of them serious, and they are listed here for the same reason as the first nine.
+
+**10.1 The acquittal.** The Stunt & Co case file described the customer as part of "the same laundering
+operation that produced the NatWest prosecution" and never mentioned paragraph 2.7 of the very notice it
+cited, which records that **on 4 March 2025 James Stunt was acquitted** of money laundering charges in
+relation to those monies, on the basis that he had no knowledge or suspicion that they were criminal
+property. A footer saying the file is "not a criticism of any individual" does not cure that; quoting
+2.7 does. It is now the first thing that case file says, the gloss is gone, and the reconstruction table
+names the company and the role rather than the individual.
+
+It is worth being exact about the class of error, because it is not the class the first review found.
+This was not a wrong number. It was a fact I never went looking for, in a document I had already read
+for other purposes, about a living person.
+
+**10.2 Santander was an onboarding failure, and I had concluded it was not.** The case file said the
+customer was rated correctly and the failure was entirely in monitoring. The Final Notice records that
+the customer operated a **money service business** and that Santander did not identify it as one at
+onboarding. Verified, that customer is High on day one through escalator 5.3(c). The case has been
+rebuilt, the conclusion reversed, and it has produced the strongest finding in the whole back-test:
+methodology 11.15. It is also the same error as the original Stunt & Co mistake — reconstructing from a
+press release and a narrative rather than from the notice — repeated on the one case where the earlier
+version claimed the model had got it right.
+
+**10.3 Three notice dates were still wrong**, in the document that had just finished congratulating
+itself on checking dates. Monzo's notice is dated 7 July 2025 and Santander's 8 December 2022; both had
+been given their press release dates. The Barclays Bank Plc notice is dated 14 July 2025, which section
+9 states correctly and the source list of this document then contradicted.
+
+**10.4 A broken sentence in the most-read paragraph of the back-test**, left behind by an unfinished
+edit: a heading saying one case was caught, over a sentence saying two, ungrammatically. The answer is
+three.
+
+**10.5 The reproducibility claim was not true.** `data/generation-notes.md` said the population could be
+regenerated from `build/generate.py`, and `build/` was not in the repository. It is now, with every
+other script that produces anything here.
+
+**10.6 Five smaller things.** The 24 Nationwide furlough payments totalled £1.35m over thirteen months,
+followed by £26.01m over eight days; the file had fused the two figures. Factor G2 records a further
+**tax residence**, and the escalator and the population labels both called it a second residence. C4
+level 3 covered the relatives of a domestic PEP only, leaving a foreign PEP's relative with nowhere to
+be recorded — a worse defect than the one documented at 5.1. The nine-factor arithmetic at `docs/03` 4.2
+needs two of the three 5% factors at level 5, not one. And `docs/03` 5.2a, which claims to list every
+population property this project states as a model property, was missing the two most quoted numbers in
+the document.
+
+**What this round says about the first one.** Two reviews, and the second found a defect worse than
+anything in the first. The conclusion is not that the work is now clean. It is that any single reviewer
+finds a fraction of what is there, and that the fraction they find is not ordered by seriousness.
+
 ---
 
 ## Sources checked in preparing this response
 
-- FCA Final Notice, Barclays Bank Plc, 16 July 2025 — https://www.fca.org.uk/publication/final-notices/barclays-bank-plc-2025.pdf
+- FCA Final Notice, Barclays Bank Plc, 14 July 2025 — https://www.fca.org.uk/publication/final-notices/barclays-bank-plc-2025.pdf
 - Regulation 33 of SI 2017/692, as amended — https://www.legislation.gov.uk/uksi/2017/692/regulation/33
 - Regulation 35 of SI 2017/692, including paragraph (3A) — https://www.legislation.gov.uk/uksi/2017/692/regulation/35
 - The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (SI 2026/621), as made — https://www.legislation.gov.uk/uksi/2026/621/made
@@ -267,13 +322,14 @@ catch fastest.
 - Regulation 14 of SI 2017/692 (high value dealers), and regulation 9 of SI 2026/621 which redenominated its threshold — https://www.legislation.gov.uk/uksi/2017/692/regulation/14
 - FCA agreed statement of facts, FCA v National Westminster Bank Plc — https://www.fca.org.uk/publication/corporate/agreed-statement-facts-fca-national-westminster-bank.pdf
 - FCA Final Notice, Barclays Bank UK Plc (WealthTek), 14 July 2025 — https://www.fca.org.uk/publication/final-notices/barclays-bank-uk-plc-2025.pdf
-- FCA Final Notice, Santander UK Plc, 9 December 2022 — https://www.fca.org.uk/publication/final-notices/santander-uk-plc-2022.pdf
-- FCA Final Notice, Monzo Bank Limited, 8 July 2025 — https://www.fca.org.uk/publication/final-notices/monzo-bank-limited.pdf
+- FCA Final Notice, Santander UK Plc, 8 December 2022 — https://www.fca.org.uk/publication/final-notices/santander-uk-plc-2022.pdf
+- FCA Final Notice, Monzo Bank Limited, 7 July 2025 — https://www.fca.org.uk/publication/final-notices/monzo-bank-limited.pdf
 - FCA Final Notice, Nationwide Building Society, 11 December 2025 — https://www.fca.org.uk/publication/final-notices/nationwide-building-society-2025.pdf
 
 ## Version history
 
 | Version | Date | Change |
 |---|---|---|
+| 0.3 | Sept 2026 | Second pre-publication review, at section 10: the Stunt & Co acquittal, the Santander conclusion reversed, and nine further corrections. |
 | 0.2 | Sept 2026 | Pre-publication fact check of every enforcement figure, date, entity name and regulatory citation against the primary source. Nine corrections, listed at section 9. |
 | 0.1 | Sept 2026 | First issue, following the external second-line review. |

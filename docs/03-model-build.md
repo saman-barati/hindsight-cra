@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-006
-**Version:** 0.5
+**Version:** 0.6
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion files:** `model/customer-risk-model.xlsx`, `data/synthetic-customers.csv`, `data/generation-notes.md`
@@ -19,7 +19,7 @@ Step 3 was supposed to be the mechanical step: load the data, apply the library,
 
 1.1 `model/customer-risk-model.xlsx` takes the 400 synthetic customers, converts the level recorded against each of the 20 factors into a score using the Step 2 library, weights and sums those scores, bands the result, and then applies the mandatory escalators from methodology 5.3.
 
-1.2 Six sheets:
+1.2 Nine sheets:
 
 | Sheet | Contents |
 |---|---|
@@ -100,7 +100,7 @@ The highest overall score anywhere in the population is **2.76**. The High band 
 
 ### 4.2 Why that happens
 
-It is not a coding error, and the workbook's nineteen checks all pass. It is arithmetic. **Nine factors would have to score 5, with every one of the remaining eleven at 1, for a customer to reach exactly 3.50.** The nine heaviest carry 62.5% of the effective weight between them, and 1 + 4 x 0.625 = 3.50 exactly. Nine is the count rather than a unique set: G2, P2 and P3 all carry 5%, so any one of the three fills the ninth place and the other two sit at 1. A weighted average over 20 factors pulls hard towards the middle: a customer has to be simultaneously bad on almost everything before the average moves, and real customers are bad on two or three things at once, not nine.
+It is not a coding error, and the workbook's nineteen checks all pass. It is arithmetic. **Nine factors would have to score 5, with every one of the remaining eleven at 1, for a customer to reach exactly 3.50.** The nine heaviest carry 62.5% of the effective weight between them, and 1 + 4 x 0.625 = 3.50 exactly. Nine is the count rather than a unique set: the seven factors above 5% carry 52.5%, and G2, P2 and P3 all carry exactly 5%, so **two** of those three must be at 5 to reach 62.5% while the third sits at 1. With only one of the three at 5 the total is 57.5% and the score reaches 3.30. A weighted average over 20 factors pulls hard towards the middle: a customer has to be simultaneously bad on almost everything before the average moves, and real customers are bad on two or three things at once, not nine.
 
 Methodology 10.5 already said that a weighted average dilutes single severe factors by design, and that the escalator list is the compensating control. What Step 3 shows is how complete that dilution is. The escalators are not a compensating control at the margin; on this population they are doing **all** of the work at the top of the scale.
 
@@ -144,7 +144,17 @@ That is the same fact pattern as the worked example at methodology 5.6, which sc
 
 5.2 The distributions are my judgement. Change them and the band counts change. What does **not** change with the distributions is that G1 has one value, that nine factors must be at 5 to reach 3.50, and that a weighted average compresses. Those are properties of the model, not of the data.
 
-5.2a **Everything else in section 4 is a property of the population.** Added after external review, which asked for every place this project states a population property as a model property. The list, so it is in one place: "no personal customer is rated Medium" (4.4) follows from the distributions chosen for personal customers in `data/generation-notes.md`, not from the model; so do the band shares in 4.1, the category means and standard deviations in 4.3 apart from G1's single value, the 37 customers near the boundary in 4.5, and the eight uncaught cash-intensive customers in 4.6. Change the distributions and every one of those numbers changes. They are reported because they show what the model does to *a* plausible book, and the README states them more strongly than it should have; that has been corrected too.
+5.2a **Everything else in section 4 is a property of the population.** Added after external review, which asked for every place this project states a population property as a model property; extended after a second review found the list incomplete. Every one of these changes if the distributions change:
+
+- the band shares and counts in 4.1, including the three customers the escalator 5.3(d) correction moved;
+- **"the highest overall score anywhere in the population is 2.76"** (4.2). The model's ceiling is 5.00. This number describes a draw, not a design;
+- **"every one of those 43 High ratings came from a mandatory escalator; not one customer in 400 reached the High band on the arithmetic"** (4.1). A customer with the nine heaviest factors at 5 *would* reach 3.50. That none exists here is a fact about the population, and it is restated as though it were a model property at methodology 11.5 and in section 2 of the validation pack;
+- the category means, standard deviations and share-at-minimum column in 4.3, apart from G1's single value, which really is structural;
+- "no personal customer is rated Medium" (4.4);
+- the 37 customers within 0.10 of the boundary (4.5);
+- the eight uncaught cash-intensive customers (4.6).
+
+What is **not** a property of the population: G1 takes one value because methodology 2.2 puts non-UK residents outside the perimeter; nine factors must be at 5 to reach 3.50; and a weighted average over 20 factors compresses. Those three hold whatever book you feed it.
 
 5.3 Nothing here says the ratings are wrong. It says the arithmetic is not doing the job the methodology gives it. Whether the ratings are wrong is a question about real customers, and it belongs to Step 4.
 
@@ -162,8 +172,9 @@ That is the same fact pattern as the worked example at methodology 5.6, which sc
 
 | Version | Date | Change |
 |---|---|---|
-| 0.1 | Sept 2026 | First run of the model on the 400-customer synthetic population. |
+| 0.6 | Sept 2026 | Second pre-publication review. The sheet count in 1.2 corrected from six to nine, the 3.50 arithmetic in 4.2 corrected, and 5.2a extended to the properties it had omitted. Figures re-run after the G2 label and C4 definition corrections. |
 | 0.5 | Sept 2026 | After external second-line review. Escalator 5.3(d) corrected to fire on C1 level 5, which moves three customers from Medium to High; every figure in section 4 re-run. The 3.50 arithmetic at 4.2 restated precisely (nine is a count, not a unique set). 5.2a added, listing the findings that are properties of the invented population rather than of the model. |
 | 0.4 | Sept 2026 | Validation sheet and the Step 5 scenario columns added; three further integrity checks. Section 4 figures unchanged. |
 | 0.3 | Sept 2026 | Backtest sheet added for Step 4, and three further integrity checks. Section 4 figures unchanged. |
 | 0.2 | Sept 2026 | Re-run after the pre-Step-4 review corrected the C2 and C3 level 5 definitions. Every figure in section 4 is unchanged, because the correction was to wording rather than to any score. Document reference corrected from HND-CRA-005 to HND-CRA-006. |
+| 0.1 | Sept 2026 | First run of the model on the 400-customer synthetic population. |
