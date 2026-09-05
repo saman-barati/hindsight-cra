@@ -31,9 +31,9 @@ Six customers named in published FCA enforcement material — NatWest and Fowler
 
 The six cases carry roughly £480 million of penalties between them. Two caveats travel with that number and are stated wherever it appears. Those penalties were imposed for control failures across whole customer books over periods of years, not for these six accounts — no single customer caused a fine. And the total mixes five FCA penalties with one **criminal fine imposed by Southwark Crown Court** following an FCA prosecution, which is a different kind of thing. These six are used because the published material describes them in enough detail to rebuild.
 
-Each case is scored at least twice: once with every open factor read the way most favourable to the customer, once with every open factor at the worst level a competent analyst could have defended on the same information. The pair is the result; the width of the pair is how much of it is reconstruction rather than fact.
+Four of the six are scored twice: once with every open factor read the way most favourable to the customer, once with every open factor at the worst level a competent analyst could have defended on the same information. The pair is the result, and the width of the pair is how much of it is reconstruction rather than fact. The other two are pairs of a different kind — Stunt & Co is scored on two **dates**, eleven days apart, and Santander with and without the one **verification** the FCA found was missing.
 
-**Not one of the six reaches the High band on the arithmetic, in any reading.** One is rated High, through a mandatory escalator.
+**Not one of the six reaches the High band on the arithmetic, in any reading.** Three are rated High, and all three through the same mandatory escalator — 5.3(c), money service business, trust or company service provider, or dealer in high-value goods. One escalator carrying every catch is not a comfortable result, and the back-test says so.
 
 **And none of them could have reached it.** The facts each notice settles — a UK company, a UK address, branch or app onboarding — pin between 41% and 69% of the model's weight at level 1 before a single judgement is made. The highest score any of the six could reach, if every remaining factor went to 5, is 3.37 against a threshold of 3.50. That finding was fixed by the inputs, not discovered by the test, and it is stated here rather than in a limitations section because an earlier version of this README claimed it as a discovery.
 
@@ -41,6 +41,7 @@ What the back-test can still decide is whether an escalator fires, and how far t
 
 - **One word decides the most serious case.** Fowler Oldfield was a jewellery business. Read as a *cash-intensive trade* it is Low; read as a *dealer in high-value goods* it is High. The scores differ by 0.075. The rating differs completely, because one reading fires an escalator and the other does not.
 - **Stunt & Co was rated High on the day the account opened**, from the application form alone. The form recorded "Gold Refining & Trading", which is a dealer in high-value goods on the wording of the same level definition Fowler Oldfield exposes as ambiguous. **The fix this project had already recommended — tying that level to registration rather than to a description of the trade — would have taken this customer from High to Medium.** A fix that resolves one case breaks another, and it is now on the list with that argument against it.
+- **Santander's customer is the one I got wrong twice.** Scored from its application form — "Translation service" — it is Low, and the first version of that case file concluded the model had got it right. The notice records that the customer operated a **money service business** and that Santander did not identify it at onboarding. Verified, the same customer is High on day one. The model contained the control the whole time; the file did not contain the input. That is [methodology 11.15](docs/01-methodology.md), and it is the finding I would keep if I could only keep one.
 - **A customer whose stated address was a London landmark scores 1.52.** The library has a factor written for exactly that, from the Monzo notice. I gave it 1.5% of the model in Step 2 and defended the choice in writing. The back-test says I was wrong, and both the reasoning and the result stay in the repository.
 - **Two of the six were never onboarding failures.** Santander's translations company and Nationwide's personal customer were both rated correctly at onboarding. What failed was the monitoring afterwards — which is what the event-driven review triggers exist for, not the rating.
 
@@ -64,9 +65,9 @@ The recommendation is a firm-policy floor at Medium rather than a weight change,
 
 The finished project was put through a second-line model validation review by a system that had not seen it before, given the whole pack and told to find what was wrong with it. It returned 41 findings. Most were right.
 
-The three biggest are already in this README: the Stunt & Co reconstruction had been built from a narrative rather than from the Final Notice and inverted a published conclusion; the back-test's headline was guaranteed by its inputs; and the £480 million was honest arithmetic with a loose attribution. Everything above has been rewritten accordingly, and the workbooks re-run.
+The three biggest are already in this README: the Stunt & Co reconstruction had been built from a narrative rather than from the Final Notice and inverted a published conclusion; the back-test's headline was guaranteed by its inputs; and the £480 million was honest arithmetic with a loose attribution. Three findings were wrong, and are answered rather than accepted.
 
-Three findings were wrong, and are answered rather than accepted. All 41 dispositions, with the evidence for each, are in [`docs/06-review-response.md`](docs/06-review-response.md).
+Then the corrected repository was reviewed **again**, and that round found nine more, three of them serious — including a paragraph of a Final Notice I had cited without reading, recording that an individual named in one case file had been acquitted. Both rounds, with every disposition and the evidence for each, are in [`docs/06-review-response.md`](docs/06-review-response.md). Section 10 is the one worth reading: the second review found something worse than anything in the first, which is the most useful thing this project has to say about review.
 
 ## What has been changed, and what has not
 
@@ -81,13 +82,14 @@ A model whose author quietly rewrites it the moment a test embarrasses him has n
 - **Northgate Bank UK Limited is fictional.** It was invented to give the model a defined perimeter.
 - **All data is synthetic.** No real customer data is used, held or referenced.
 - **This is a self-directed learning project**, built alongside a BA in Accounting and Finance. It is not professional work product and I do not hold a compliance role.
-- **It is not compliance advice**, and it has not been through independent validation by a person. The known weaknesses are listed in section 10 of the methodology, and the decisions I am least confident about are in section 11 — which now runs to fourteen entries.
-- **Several findings in this repository are properties of a population I invented**, not of the model. `docs/03-model-build.md` section 5.2a lists every one of them in a single place, because an earlier version of this README stated some of them more strongly than the evidence allows.
+- **It is not compliance advice**, and it has not been through independent validation by a person. The known weaknesses are listed in section 10 of the methodology, and the decisions I am least confident about are in section 11 — which now runs to sixteen entries.
+- **Several findings in this repository are properties of a population I invented**, not of the model. `docs/03-model-build.md` section 5.2a lists them in a single place, because an earlier version of this README stated some of them more strongly than the evidence allows.
+- **The back-test cases involve real firms and, in one instance, a named individual who was acquitted.** `backtest/cases/barclays-stunt-and-co.md` opens with that acquittal because the notice records it and an earlier version of that file did not. Every case file tests a model against what a regulator published. None of them is a finding about any person.
 - Where I have used AI tools, I say so in the document they relate to.
 
 ## Sources
 
-Regulation, guidance and enforcement sources are listed in Appendix A of the methodology document and Appendix A of the risk factor rationale, with a link to the primary source in each case.
+Regulation, guidance and enforcement sources are listed in Appendix A of the methodology document and Appendix A of the risk factor rationale, with a link to the primary source in each case. Every script that produces anything in this repository — the population, both workbooks, the generated documents and the summary PDF — is in [`build/`](build/), so the whole thing regenerates from source.
 
 Before publication every external fact in this repository — each penalty, date, legal entity name, quoted finding and regulatory citation — was checked against the primary document rather than against notes. Nine things were wrong and are listed, with the corrections, in [`docs/06-review-response.md`](docs/06-review-response.md) section 9. None of them was an invented fact; all nine were real facts that had drifted, which is the failure mode worth watching for in work like this.
 
