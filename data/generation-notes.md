@@ -191,7 +191,7 @@ Drawn counts, for the factors where the outcome matters most to the model:
 
 Suspicious activity reports recorded: **11 of 400 customers (2.8%)**.
 
-That is above the 1.5% parameter at point 4 above, and the gap is the draw rather than a mistake: with p = 0.015 and n = 400 the expected count is 6.0 with a standard deviation of 2.43, so 11 sits 2.1 standard deviations high — the kind of result a single seed produces roughly one time in 25. The seed is fixed at 20260902 so the figure is reproducible, and it is the realised 2.8% that every count in this project is computed from, not the 1.5% parameter. An external reviewer read the two figures as a contradiction, which is fair: the document reported both and explained neither.
+That is above the 1.5% parameter at point 4 above, and the gap is the draw rather than a mistake: with p = 0.015 and n = 400 the expected count is 6.0 with a standard deviation of 2.43, so 11 sits 2.1 standard deviations high — the kind of result a single seed produces roughly one time in 25. The seed is fixed at 20260902 so the figure is reproducible, and it is the realised 2.8% that every count in this project is computed from, not the 1.5% parameter.
 
 ## 6. Limitations of this population
 
