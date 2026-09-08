@@ -1,7 +1,7 @@
 # Barclays Bank UK plc and WealthTek
 
 **Document reference:** HND-CRA-007
-**Version:** 0.3
+**Version:** 0.4
 **Author:** Saman Barati
 **Date:** September 2026
 
