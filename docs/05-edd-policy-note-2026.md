@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-009
-**Version:** 0.3
+**Version:** 0.4
 **To:** Money Laundering Reporting Officer, for the Financial Crime Committee
 **From:** Saman Barati
 **Date:** September 2026
@@ -14,7 +14,7 @@
 
 1.1 Under the Money Laundering Regulations 2017 as they stood, a relationship involving a high-risk third country required enhanced due diligence automatically, and the United Kingdom's definition of a high-risk third country followed both of the FATF public statements: the *Call for Action* list and the *Increased Monitoring* list.
 
-1.2 The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (**SI 2026/621**, made 9 June 2026, in force 21 days later) narrow that automatic trigger to the **Call for Action** list only. Regulation 19 of the instrument amends regulation 33 of the 2017 Regulations in three places: it substitutes "FATF call for action country" for "high-risk third country" at regulation 33(1)(b), and at regulation 33(3)(a) it defines that term as *"a country named on the list of High-Risk Jurisdictions subject to a Call for Action published by the Financial Action Task Force as such list has effect from time to time"*. At the FATF plenary of 19 June 2026 that list held three jurisdictions; the Increased Monitoring list held 22.
+1.2 The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (**SI 2026/621**, made 9 June 2026, in force 21 days later) narrow that automatic trigger to the **Call for Action** list only. Regulation 19 of the instrument amends regulation 33 of the 2017 Regulations in three places. Two of them matter here: it substitutes "FATF call for action country" for "high-risk third country" at regulation 33(1)(b), and at regulation 33(3)(a) it defines that term as *"a country named on the list of High-Risk Jurisdictions subject to a Call for Action published by the Financial Action Task Force as such list has effect from time to time"*. The third amendment, at regulation 33(1)(f)(i), replaces "complex or unusually large" with "unusually complex or unusually large in each case given the nature of the transaction" and is not about jurisdictions at all. At the FATF plenary of 19 June 2026 that list held three jurisdictions; the Increased Monitoring list held 22.
 
 1.3 The effect is that a customer connected to any of those 22 jurisdictions no longer attracts enhanced due diligence by operation of law. The obligation to apply a risk-based approach is unchanged, and regulation 33 still requires enhanced measures wherever the firm identifies a high risk. What has gone is the automatic trigger.
 
@@ -42,7 +42,7 @@ Measured on the current population of 400 customers.
 
 3.2 **Not one of them is escalated for any other reason.** The geography escalator was the only control catching them. Once it stops applying, 9 of the 11 fall to Low, which under the current bands means simplified due diligence where the conditions of regulation 37 are met, no source of funds at onboarding, and a five-year refresh cycle.
 
-3.3 The model already scores these customers: a connection to an Increased Monitoring jurisdiction is level 4 on factors G1, G2 or G3. The problem is that scoring them changes nothing. As the validation pack shows, the weighted average is too compressed for a single factor at level 4 to move a customer across a band boundary. The score sees the risk. The rating does not.
+3.3 The model does score these customers. A connection to an Increased Monitoring jurisdiction is level 4 on factor G2 for 5 of them and on factor G3 for the other 6. (Factor G1 records country of residence and takes a single value across this whole book, because paragraph 2.2 of the methodology puts non-UK residents outside the perimeter, so it is never the factor carrying this.) Scoring is not rating. G3 carries 10% of the effective weight and G2 carries 5%, so one geography factor at level 4 lifts the overall score by 0.30 or by 0.15 — enough to carry anyone across a band boundary only where the rest of the file already sits against one. **Across these 11 customers it changes the rating of exactly 1.** Rescore the other 10 with that factor at level 1 and every one of them lands in the band it is already in.
 
 3.4 So the change does not just remove a legal obligation. For this firm it removes the **only** mechanism by which an Increased Monitoring jurisdiction affected how a customer was treated.
 
@@ -60,7 +60,7 @@ Measured on the current population of 400 customers.
 
 5.2 Three reasons.
 
-- **It preserves the distinction the amendment draws.** SI 2026/621 is made by the Treasury under delegated powers, and this note does not attempt to state the policy intention behind it — no explanatory memorandum is cited here. What the instrument plainly does is separate three jurisdictions from twenty-five. Option B ignores that separation; option A over-corrects for it.
+- **It preserves the distinction the amendment draws.** SI 2026/621 is made by the Treasury under delegated powers, and this note does not attempt to state the policy intention behind it — no explanatory memorandum is cited here. What the instrument plainly does is separate three jurisdictions from the twenty-two on the other list. Option B ignores that separation; option A over-corrects for it.
 - **It is materially cheaper than option B**, because Medium treatment on 11 customers costs less than High treatment on the same 11. How much less depends on what this firm's enhanced due diligence actually costs per file, which the Bank has not given me. The "roughly a third" in section 4 is an order-of-magnitude placeholder and is labelled as one; it should be replaced with the firm's own figure before this note is acted on.
 - **It survives the band recalibration proposed in the validation pack.** A floor at Medium is expressed in bands, not in scores, so it does not need re-tuning when the boundaries move.
 
@@ -98,6 +98,7 @@ Measured on the current population of 400 customers.
 
 | Version | Date | Change |
 |---|---|---|
+| 0.4 | Sept 2026 | 3.3 rewritten. It claimed, on the authority of a validation pack that does not test the question, that a single factor at level 4 can never move a customer across a band. On this population it moves two of these eleven, which 3.2 already implied and 3.3 contradicted. The third amendment regulation 19 makes to regulation 33 is now named at 1.2, so that "three places" is not left with two examples. 5.2 corrected: the instrument separates three jurisdictions from twenty-two, not from twenty-five. |
 | 0.3 | Sept 2026 | The argument at 5.3 was false and is replaced. The "eighteen months" at 7.3 is five. The policy intention behind the instrument is no longer asserted, and the "roughly a third" cost figure is labelled as the placeholder it is. |
 | 0.2 | Sept 2026 | Rewritten against SI 2026/621 as made, rather than the draft instrument and commentary on it. Regulation 19's actual amendments to regulation 33 are quoted at 1.2; the dynamic reference to the FATF list and the insertion of regulation 34A are added at 1.4; section 7 is rewritten to say what the note does not cover rather than to ask for a check that has now been done. Figures re-run. |
 | 0.1 | Sept 2026 | First version, written against the draft instrument. |

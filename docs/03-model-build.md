@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-006
-**Version:** 0.6
+**Version:** 0.7
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion files:** `model/customer-risk-model.xlsx`, `data/synthetic-customers.csv`, `data/generation-notes.md`
@@ -136,7 +136,7 @@ Not one personal customer was rated Medium. The highest-scoring personal custome
 
 Eight customers are in a cash-intensive sector **and** expect more than 30% of their credits in cash, and no escalator applies to any of them. All eight are rated Medium. The highest scores 2.21.
 
-That is the same fact pattern as the worked example at methodology 5.6, which scored 2.07, and it is the question Step 4 answers, though less cleanly than that phrasing suggests. See [`backtest/README.md`](../backtest/README.md). Six customers named in FCA notices carrying roughly £480m of penalties between them are rebuilt there; none reaches High on the arithmetic, and none of them could have, because the facts the notices settle pin between 40% and 69% of the model's weight at level 1 before any judgement is made.
+That is the same fact pattern as the worked example at methodology 5.6, which scored 2.07, and it is the question Step 4 answers, though less cleanly than that phrasing suggests. See [`backtest/README.md`](../backtest/README.md). Six customers named in FCA notices are rebuilt there; none reaches High on the arithmetic, and none of them could have, because the facts the notices settle pin between 40% and 69% of the model's weight at level 1 before any judgement is made. Those six notices carry roughly £480m of penalties between them, and the two caveats that travel with that figure travel with it here too: the penalties were imposed for control failures across whole customer books over periods of years rather than for these six accounts, and the total mixes five FCA penalties with one criminal fine imposed by Southwark Crown Court.
 
 ## 5. What this does not prove
 
@@ -150,9 +150,11 @@ That is the same fact pattern as the worked example at methodology 5.6, which sc
 - **"the highest overall score anywhere in the population is 2.76"** (4.2). The model's ceiling is 5.00. This number describes a draw, not a design;
 - **"every one of those 43 High ratings came from a mandatory escalator; not one customer in 400 reached the High band on the arithmetic"** (4.1). A customer with the nine heaviest factors at 5 *would* reach 3.50. That none exists here is a fact about the population, and it is restated as though it were a model property at methodology 11.5 and in section 2 of the validation pack;
 - the category means, standard deviations and share-at-minimum column in 4.3, apart from G1's single value, which really is structural;
-- "no personal customer is rated Medium" (4.4);
-- the 37 customers within 0.10 of the boundary (4.5);
+- "no personal customer is rated Medium" (4.4), **the whole segment table it sits in**, and **"the highest-scoring personal customer who was not escalated scores exactly 2.00"**, which is a coincidence of one draw and reads in 4.4 as though it were a design;
+- the 37 customers within 0.10 of the boundary (4.5), and **the 1.19 floor of the range quoted there**, which is reused in the back-test to calibrate what the reconstruction spreads mean;
 - the eight uncaught cash-intensive customers (4.6).
+
+Everything in the Step 5 pack is a property of this population too — the percentiles at `docs/04` section 2, every count in its sections 3 and 4, and every figure in `docs/05` section 2. They are not repeated here; the rule is that any count of customers in this repository describes a book I invented.
 
 What is **not** a property of the population: G1 takes one value because methodology 2.2 puts non-UK residents outside the perimeter; nine factors must be at 5 to reach 3.50; and a weighted average over 20 factors compresses. Those three hold whatever book you feed it.
 
@@ -172,9 +174,10 @@ What is **not** a property of the population: G1 takes one value because methodo
 
 | Version | Date | Change |
 |---|---|---|
+| 0.7 | Sept 2026 | 5.2a extended again: it was still missing the 2.00 ceiling on unescalated personal customers, the segment table at 4.4 and the 1.19 floor at 4.5, and it now states the rule for the Step 5 figures rather than implying they are exempt. The two caveats on the £480m figure added at 4.6, where the figure appears. Version history row 0.3 corrected: four back-test integrity checks were added, not three. |
 | 0.6 | Sept 2026 | The sheet count in 1.2 corrected from six to nine, the 3.50 arithmetic in 4.2 corrected, and 5.2a extended to the properties it had omitted. Figures re-run after the G2 label and C4 definition corrections. |
 | 0.5 | Sept 2026 | Escalator 5.3(d) corrected to fire on C1 level 5, which moves three customers from Medium to High; every figure in section 4 re-run. The 3.50 arithmetic at 4.2 restated precisely (nine is a count, not a unique set). 5.2a added, listing the findings that are properties of the invented population rather than of the model. |
 | 0.4 | Sept 2026 | Validation sheet and the Step 5 scenario columns added; three further integrity checks. Section 4 figures unchanged. |
-| 0.3 | Sept 2026 | Backtest sheet added for Step 4, and three further integrity checks. Section 4 figures unchanged. |
+| 0.3 | Sept 2026 | Backtest sheet added for Step 4, and four further integrity checks. Section 4 figures unchanged. |
 | 0.2 | Sept 2026 | Re-run after the C2 and C3 level 5 definitions were corrected. Every figure in section 4 is unchanged, because the correction was to wording rather than to any score. Document reference corrected from HND-CRA-005 to HND-CRA-006. |
 | 0.1 | Sept 2026 | First run of the model on the 400-customer synthetic population. |

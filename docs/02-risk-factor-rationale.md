@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-003
-**Version:** 0.5 (draft)
+**Version:** 0.6 (draft)
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion file:** `model/risk-factor-library.xlsx`
@@ -59,7 +59,7 @@ Everything here is judgement unless it cites a source. Where a number is judgeme
 
 5.1 **Nationality is not a risk factor in this model.** Country of residence, country of incorporation, country of tax residence and the expected payment corridor all are. Nationality is not.
 
-5.2 There are two reasons. The first is legal. Nationality is not itself one of the protected characteristics listed at section 4 of the Equality Act 2010; it is protected as an aspect of **race**, which section 9(1)(b) defines as including colour, nationality and ethnic or national origins. Scoring nationality is therefore scoring a protected characteristic, and the distinction matters: the exclusion at 5.1 rests on section 9(1)(b), not on section 4.
+5.2 There are two reasons. The first is legal. Nationality is not itself one of the protected characteristics listed at section 4 of the Equality Act 2010; it is protected as an aspect of **race**, which section 9(1) defines as including colour, nationality and ethnic or national origins — nationality is limb (b) of that definition. Scoring nationality is therefore scoring a protected characteristic, and the distinction matters: the exclusion at 5.1 rests on section 9(1)(b), not on section 4.
 
 5.2a The second reason, and the one that matters for the model, is that nationality carries almost no information the other four geography inputs do not already carry, and it carries it about the person rather than about the money. A UK-resident customer with a UK account paying UK counterparties presents the same laundering risk whatever passport they hold.
 
@@ -83,11 +83,11 @@ First, regulation 35(1) applies enhanced due diligence to a PEP **and** to a fam
 
 Second, and separately, escalator 5.3(a) rates every one of levels 3, 4 and 5 High, so even the distinction the scale does draw between a domestic and a foreign PEP changes nothing in the output. Methodology 11.13 records this as a defect and the validation pack recommends the fix. It is unapplied because it is a change to an escalator.
 
-6.4 **A score of 5 and an automatic escalation mean the same thing.** Corrected after the Step 3 review. As first drafted, C2 level 5 covered both an ownership chain of three or more layers *and* the nominee, bearer-share and unevidenced cases, while escalator 5.3(d) covers only the second group. C3 level 5 had the same problem: it listed accountancy practices alongside the three business types in escalator 5.3(c). In both cases a customer could score 5 without meeting the escalator condition, so a model that fires the escalator on the score would have escalated customers it had no basis to escalate.
+6.4 **A score of 5 and an automatic escalation mean the same thing.** Corrected before Step 4. As first drafted, C2 level 5 covered both an ownership chain of three or more layers *and* the nominee, bearer-share and unevidenced cases, while escalator 5.3(d) covers only the second group. C3 level 5 had the same problem: it listed accountancy practices alongside the three business types in escalator 5.3(c). In both cases a customer could score 5 without meeting the escalator condition, so a model that fires the escalator on the score would have escalated customers it had no basis to escalate.
 
-The fix is definitional rather than mechanical. C2 level 5 is now exactly the 5.3(d) condition, and a deep but fully evidenced ownership chain sits at level 4 however deep it goes, because if the Bank can evidence every layer it can still say who it is dealing with. C3 level 5 is now exactly the three business types in 5.3(c), and sectors the National Risk Assessment treats as vulnerable without an automatic escalation, including accountancy practices and registered cryptoasset businesses, sit at level 4.
+The fix is definitional rather than mechanical. C3 level 5 is now exactly the three business types in 5.3(c), and sectors the National Risk Assessment treats as vulnerable without an automatic escalation, including accountancy practices and registered cryptoasset businesses, sit at level 4. C2 level 5 now matches 5.3(d) on the nominee and bearer-share limbs and a deep but fully evidenced ownership chain sits at level 4 however deep it goes, because if the Bank can evidence every layer it can still say who it is dealing with — but the match is not exact. C2 level 5's third limb is "a layer of the ownership chain that cannot be evidenced"; 5.3(d)'s is "an entity incorporated in a jurisdiction with no accessible beneficial ownership register". The two overlap heavily and are not the same condition, so a customer can still reach C2 level 5, and be escalated, without meeting any limb of 5.3(d) as the escalator is written. That is a smaller version of the defect this paragraph opens by describing, and it is unresolved.
 
-6.5 **Some levels point at other factors.** P3 level 5 and A3 level 5 are both defined by reference to the country score at G3. This keeps the model internally consistent: the corridor cannot be low risk in one category and high risk in another.
+6.5 **Some levels point at other factors.** P3 level 5 and A3 level 5 are both defined by reference to the country score at G3, so that the corridor cannot be read as low risk in one category and high risk in another. That is a constraint on the *library*. It is not enforced on the data: the synthetic population draws every factor independently within a segment, which produces files that sit at P3 level 5 with G3 below 4, and the reverse. `data/generation-notes.md` section 6.2 counts them.
 
 6.6 **Some levels are drawn straight from enforcement.** A5 level 5 covers a declared profile that is not credible on the information held, "including an address that is a landmark or a non-residential building". That wording comes from the FCA's July 2025 final notice against Monzo, which records customers onboarded using well-known London landmarks as their address. D3 levels 4 and 5 turn on whether the introducing firm's entry on the Financial Services Register was checked, which is the failure the FCA fined Barclays Bank UK for in the same month.
 
@@ -117,7 +117,7 @@ The fix is definitional rather than mechanical. C2 level 5 is now exactly the 5.
 
 9.3 **Weight sensitivity.** Change each category weight by ten percentage points in turn and count how many customers change band. A weight that moves nobody is not carrying risk, it is carrying arithmetic. My expectation, recorded now so it can be checked later, is that geography will move almost nobody and that the honest response will be to cut its weight and let the mandatory escalator at 5.3(b) carry country risk on its own.
 
-9.4 **Band boundaries.** The worked example at 2.07 sits one hundredth of a point inside Medium. If a material share of the population clusters that close to a boundary, the boundary is in the wrong place.
+9.4 **Band boundaries.** The worked example at 2.07 sits six hundredths of a point inside Medium. If a material share of the population clusters that close to a boundary, the boundary is in the wrong place.
 
 ---
 
@@ -139,6 +139,7 @@ The fix is definitional rather than mechanical. C2 level 5 is now exactly the 5.
 
 | Version | Date | Change |
 |---|---|---|
+| 0.6 | Sept 2026 | 6.4 corrected: C2 level 5 was described as "exactly the 5.3(d) condition" and is not — its third limb and the escalator's third limb are different conditions, and the paragraph now says so. 6.5 corrected: the constraint it describes binds the library, not the generated population, which does contain the combinations it excludes; `data/generation-notes.md` 6.2 now counts them. 5.2 corrected: section 9(1) of the Equality Act carries the definition, nationality is limb (b) of it. The worked example's distance from the boundary at 9.4 corrected to six hundredths. Monzo final notice dated 7 July 2025 in Appendix A. |
 | 0.5 | Sept 2026 | 6.3 rewritten to cover both missing levels, C4 level 2 and G2 level 3. 6.3a corrected: C4 level 3 covered only the relatives of a domestic PEP. |
 | 0.4 | Sept 2026 | Every citation in Appendix A checked against the primary source before publication. Corrections: the de-risking passage is now quoted in the FCA's own words from the correct URL and identified as a webpage; FG25/3 given its real title and dates; the JMLSG edition dated; the NRA given its correct publisher, date and URL; the FATF statements given their plenary date and per-list URLs; and the Monzo and Barclays Bank UK final notices cited directly rather than through the press release. |
 | 0.3 | Sept 2026 | 5.2 corrected: nationality is protected as an aspect of race under section 9(1)(b) of the Equality Act 2010, not as a protected characteristic in its own right. 6.3a added on the C4 scale and regulation 35(3A). 8.2a added: checks 11 and 12 cannot fail independently of checks 1 to 3, 9 and 10, and are retained for what they test about the aggregation rather than about the levels. |

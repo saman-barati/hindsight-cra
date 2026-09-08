@@ -2,7 +2,7 @@
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-008
-**Version:** 0.3
+**Version:** 0.4
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion file:** `model/customer-risk-model.xlsx`, sheet `Validation`
@@ -58,7 +58,7 @@ Each category weight was moved by ten percentage points, with the other four res
 
 Under the current bands, **the largest weight change in the table moves 26 customers out of 400**. Removing the delivery channel category entirely — setting it to zero — moves 14.
 
-That is the answer to the question Step 2 spent a document arguing about. Whether geography carries 25% or 15% changes the rating of 26 customers. The weights are not what decides this model's output.
+That is the answer to the question Step 2 spent a document arguing about. Whether geography carries 25% or 15% changes the rating of 16 customers. The weights are not what decides this model's output.
 
 ### 3.2 Why, and what actually decides it
 
@@ -116,13 +116,13 @@ In priority order, with the evidence for each.
 | 7 | **Split C1 level 5** into "trust or overseas incorporation, ownership evidenced" and "nominee or bearer". | Escalator 5.3(d) is written as a condition the recorded level cannot evaluate, so it currently fires on the whole level. Methodology 11.9a. |
 | 8 | **Add a level to C4 for the family and associates of a foreign PEP**, distinct from those of a domestic PEP. | Regulation 35(3A) requires the domestic starting point to be lower. The library now covers relatives of any PEP at level 3, but still cannot tell the two apart, so change 4 cannot be implemented without this. |
 
-Changes 1 and 2 are implemented in the workbook and tested below. Changes 3 to 8 are specified but not built.
+Changes 1 and 2 are modelled as scenario columns in the workbook and tested below; neither has been applied to the live rating. Changes 3 to 8 are specified but not built.
 
 ### 5.1 Change 3 is contested by the evidence for it
 
 Tying the high-value-dealer level to registration would resolve the Fowler Oldfield ambiguity. It would also have taken **Stunt & Co from High to Medium**, because a gold refiner and trader that declares no cash would probably not have been a registered high value dealer, and C3 level 5 as currently written is the only thing in the model that catches that customer on the day the account opens.
 
-So the change is not an improvement; it is a trade. It buys consistency on one case and loses the only correct call the back-test produced. It stays on the list because the current wording is genuinely ambiguous, but it cannot be made without a replacement control — the obvious candidate being a level that turns on the *goods* rather than on the registration, which is what the current wording was reaching for and failed to express precisely. Recorded so that nobody applies change 3 on the strength of the Fowler Oldfield finding alone.
+So the change is not an improvement; it is a trade. It buys consistency on one case and loses the only customer the back-test's escalators catch on the file as the notice records it. It stays on the list because the current wording is genuinely ambiguous, but it cannot be made without a replacement control — the obvious candidate being a level that turns on the *goods* rather than on the registration, which is what the current wording was reaching for and failed to express precisely. Recorded so that nobody applies change 3 on the strength of the Fowler Oldfield finding alone.
 
 ### 5.2 The evidence for change 5 was withdrawn
 
@@ -201,7 +201,7 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 | 8 | A C4 level for the relatives of a foreign PEP | Specified; not built |
 | — | C4 level 3 reworded to cover the family and known close associates of **any** PEP | **Applied.** A defect fix: regulation 35(1) and escalator 5.3(a) both cover them, and the library's wording covered only the relatives of a domestic PEP, so a foreign PEP's relative had no level to be recorded at. No rating changes on this population. |
 | — | Escalator 5.3(b) reworded from "second residence" to "a further tax residence" | **Applied.** Documentation fix: factor G2 records tax residence, and the escalator and the population labels both said "second residence". No rating changes. |
-| — | Escalator 5.3(d) now fires on the whole of C1 level 5 | **Applied.** A defect fix, not a calibration change: the library said C1 level 5 triggered 5.3(d) where nominee shareholders or bearer shares were present, and the model never fired it at all. Three customers move to High. The proper fix, splitting C1 level 5 so the condition can be evaluated, is change 7. See methodology 11.9a. |
+| — | Escalator 5.3(d) now fires on the whole of C1 level 5 | **Applied.** A defect fix, not a calibration change: the library said C1 level 5 triggered 5.3(d) where nominee shareholders or bearer shares were present, and the model never tested C1 at all — it fired 5.3(d) on C2 alone. Three customers move to High. The proper fix, splitting C1 level 5 so the condition can be evaluated, is change 7. See methodology 11.9a. |
 | — | Escalator 5.3(b) reworded to cover payment corridors | **Applied.** The model always fired on G3 level 5; the written escalator said "established in", which the model does not test. Documentation corrected to match the control. No rating changes. |
 
 ---
@@ -210,6 +210,7 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 
 | Version | Date | Change |
 |---|---|---|
+| 0.4 | Sept 2026 | The geography figure at 3.1 corrected: moving the weight from 25% to 15% changes 16 customers, not 26, which is the figure for the move to 35%. It is now read from the scenario row the sentence names. Section 5 no longer describes changes 1 and 2 as built into the model — they are scenario columns and have not been applied to the live rating. 5.1 no longer calls the Stunt & Co escalation the only right answer the back-test produced; the Nationwide reading is a right answer too. |
 | 0.3 | Sept 2026 | Percentiles corrected to the 43rd and 88th; the workload ratio at 4.2 corrected to 1.7; changes 7 and 8 added to section 5; two defect fixes logged in section 9. |
 | 0.2 | Sept 2026 | The back-test ceiling is now stated at 1.3 before any conclusion rests on it; the unsourced workload limit is stated at 4.2 where it decides the answer; the circularity of the proposed boundaries is stated at 5.3 where they are recommended. Change 3 is marked contested, change 5's evidence is downgraded, and a PEP change is added at 4 for regulation 35(3A). All figures re-run after escalator 5.3(d) was corrected. |
 | 0.1 | Sept 2026 | First validation pack: distribution, sensitivity, aggregation rules, recommended changes. |
