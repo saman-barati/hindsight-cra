@@ -78,7 +78,7 @@ LEVELS = [
  ("C1",2,"Joint personal account between parties with an evidenced relationship, or a UK-registered sole trader",""),
  ("C1",3,"UK-incorporated private limited company or general partnership, all owners identified as natural persons",""),
  ("C1",4,"UK-incorporated entity with one or more corporate shareholders in the ownership chain, or a limited liability partnership",""),
- ("C1",5,"Structure including a trust, a foundation, a nominee arrangement, or an entity incorporated outside the United Kingdom anywhere in the ownership chain","5.3(d), fired on the whole level; see 5.3(d) and methodology 11.9"),
+ ("C1",5,"Structure including a trust, a foundation, a nominee arrangement, or an entity incorporated outside the United Kingdom anywhere in the ownership chain","5.3(d), fired on the whole level; see 5.3(d) and methodology 11.9a"),
 
  ("C2",1,"Natural person; no beneficial ownership analysis required",""),
  ("C2",2,"One or two natural-person beneficial owners, each verified from an independent source",""),
@@ -197,7 +197,7 @@ ESCALATORS = [
  ("5.3(a)","Mandatory High","The customer, a beneficial owner or a person exercising control is a politically exposed person, a family member or a known close associate."),
  ("5.3(b)","Mandatory High","The customer resides in, has a further tax residence in, or sends money to or receives money from a jurisdiction identified by FATF as a High-Risk Jurisdiction subject to a Call for Action. Regulation 33(1)(b) requires enhanced due diligence where the customer is established in such a jurisdiction; the Bank applies the escalator to payment corridors as well, which regulation 33(1) permits because it sets a floor and not a ceiling."),
  ("5.3(c)","Mandatory High","The customer is a money service business, a trust or company service provider, or a dealer in high-value goods."),
- ("5.3(d)","Mandatory High","The ownership structure includes nominee shareholders, bearer shares, or an entity incorporated in a jurisdiction with no accessible beneficial ownership register. Because level 5 of factor C1 covers trusts, nominee arrangements and overseas incorporation together, the recorded level cannot tell those apart; the escalator therefore fires on the whole of C1 level 5. That is deliberately conservative and it is the wrong way round: the fix is to split C1 level 5 so the condition can be evaluated, and that is a library change requiring approval (methodology 11.9)."),
+ ("5.3(d)","Mandatory High","The ownership structure includes nominee shareholders, bearer shares, or an entity incorporated in a jurisdiction with no accessible beneficial ownership register. Because level 5 of factor C1 covers trusts, nominee arrangements and overseas incorporation together, the recorded level cannot tell those apart; the escalator therefore fires on the whole of C1 level 5. That is deliberately conservative and it is the wrong way round: the fix is to split C1 level 5 so the condition can be evaluated, and that is a library change requiring approval (methodology 11.9a)."),
  ("5.3(e)","Mandatory High","Screening returns a confirmed adverse media match relating to financial crime, fraud, bribery, corruption or tax evasion."),
  ("5.3(f)","Mandatory High","A suspicious activity report has been submitted in respect of the customer in the preceding twelve months."),
  ("5.4(a)","Prohibited","A confirmed sanctions match. Referred to the Sanctions team and handled under the sanctions procedure, not under this model."),

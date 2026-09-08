@@ -88,7 +88,16 @@ STALE = ["ukdsi/2026/9780348281743", "rates every single one Low", "three to six
          "06-review-response", "06-change-log", "41 findings", "external review",
          "second-line review", "pre-publication review", "an earlier version",
          "recommends six changes", "Santander UK Plc, 9 December 2022",
-         "Monzo Bank Limited, 8 July 2025"]
+         "Monzo Bank Limited, 8 July 2025", "Monzo Bank Ltd, 8 July 2025",
+         # figures and claims corrected in the final pass
+         "one hundredth of a point", "Two defect fixes have therefore been applied",
+         "the only correct call the back-test produced", "implemented in the workbook",
+         "separate three jurisdictions from twenty-five",
+         "single factor at level 4 to move a customer across a band",
+         "one factor at level 4 cannot move a customer across a band",
+         "Four of the six are scored twice", "C2 level 5 is now exactly the 5.3(d) condition",
+         "section 9(1)(b) defines as including",
+         "Backtest sheet added for Step 4, and three further integrity checks"]
 for t in STALE:
     hits = [p for p, txt in docs.items() if t in txt]
     chk(not hits, "stale string %r still in %s" % (t, hits))

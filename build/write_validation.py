@@ -42,6 +42,31 @@ ov = [S.cell(r, 23).value for r in range(2, 402)]
 ov_sorted = sorted(ov)
 def p(q): return ov_sorted[int(q * (len(ov_sorted) - 1))]
 
+# How much of the rating a level-4 geography score is actually carrying, for the customers
+# the 2026 change takes the statutory trigger away from. Computed, because the earlier text
+# asserted it from a sensitivity test that does not test it.
+_GW = {f: _WEFF[f] for f in ("G1", "G2", "G3")}
+_GCOL = {f: 3 + _FO.index(f) for f in ("G1", "G2", "G3")}
+
+
+def _band(x):
+    return "Low" if x <= BAND_A_LOW else ("Medium" if x <= BAND_A_MED else "High")
+
+
+BAND_A_LOW, BAND_A_MED = 2.00, 3.49
+_GEO = []
+for _r in range(2, 402):
+    _lv = {f: S.cell(_r, c).value for f, c in _GCOL.items()}
+    if max(_lv.values()) >= 4 and S.cell(_r, 26).value == "No":
+        _raw = S.cell(_r, 23).value
+        _without = _raw - sum((v - 1) * _GW[f] for f, v in _lv.items() if v >= 4)
+        _GEO.append((S.cell(_r, 25).value, _band(round(_without, 2)),
+                     [f for f, v in _lv.items() if v >= 4][0]))
+GEO_N = len(_GEO)
+GEO_MOVES = sum(1 for a, b, _ in _GEO if a != b)
+GEO_G2 = sum(1 for _, _, f in _GEO if f == "G2")
+GEO_G3 = sum(1 for _, _, f in _GEO if f == "G3")
+
 moved = sum(1 for r in BT if r[3] != r[4])
 up_lm = sum(1 for r in BT if r[3] == "Low" and r[4] == "Medium")
 up_lh = sum(1 for r in BT if r[3] == "Low" and r[4] == "High")
@@ -77,7 +102,7 @@ w(D + "04-model-validation.md", """
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-008
-**Version:** 0.3
+**Version:** 0.4
 **Author:** Saman Barati
 **Date:** September 2026
 **Companion file:** `model/customer-risk-model.xlsx`, sheet `Validation`
@@ -179,13 +204,13 @@ In priority order, with the evidence for each.
 | 7 | **Split C1 level 5** into "trust or overseas incorporation, ownership evidenced" and "nominee or bearer". | Escalator 5.3(d) is written as a condition the recorded level cannot evaluate, so it currently fires on the whole level. Methodology 11.9a. |
 | 8 | **Add a level to C4 for the family and associates of a foreign PEP**, distinct from those of a domestic PEP. | Regulation 35(3A) requires the domestic starting point to be lower. The library now covers relatives of any PEP at level 3, but still cannot tell the two apart, so change 4 cannot be implemented without this. |
 
-Changes 1 and 2 are implemented in the workbook and tested below. Changes 3 to 8 are specified but not built.
+Changes 1 and 2 are modelled as scenario columns in the workbook and tested below; neither has been applied to the live rating. Changes 3 to 8 are specified but not built.
 
 ### 5.1 Change 3 is contested by the evidence for it
 
 Tying the high-value-dealer level to registration would resolve the Fowler Oldfield ambiguity. It would also have taken **Stunt & Co from High to Medium**, because a gold refiner and trader that declares no cash would probably not have been a registered high value dealer, and C3 level 5 as currently written is the only thing in the model that catches that customer on the day the account opens.
 
-So the change is not an improvement; it is a trade. It buys consistency on one case and loses the only correct call the back-test produced. It stays on the list because the current wording is genuinely ambiguous, but it cannot be made without a replacement control — the obvious candidate being a level that turns on the *goods* rather than on the registration, which is what the current wording was reaching for and failed to express precisely. Recorded so that nobody applies change 3 on the strength of the Fowler Oldfield finding alone.
+So the change is not an improvement; it is a trade. It buys consistency on one case and loses the only customer the back-test's escalators catch on the file as the notice records it. It stays on the list because the current wording is genuinely ambiguous, but it cannot be made without a replacement control — the obvious candidate being a level that turns on the *goods* rather than on the registration, which is what the current wording was reaching for and failed to express precisely. Recorded so that nobody applies change 3 on the strength of the Fowler Oldfield finding alone.
 
 ### 5.2 The evidence for change 5 was withdrawn
 
@@ -252,7 +277,7 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 | 8 | A C4 level for the relatives of a foreign PEP | Specified; not built |
 | — | C4 level 3 reworded to cover the family and known close associates of **any** PEP | **Applied.** A defect fix: regulation 35(1) and escalator 5.3(a) both cover them, and the library's wording covered only the relatives of a domestic PEP, so a foreign PEP's relative had no level to be recorded at. No rating changes on this population. |
 | — | Escalator 5.3(b) reworded from "second residence" to "a further tax residence" | **Applied.** Documentation fix: factor G2 records tax residence, and the escalator and the population labels both said "second residence". No rating changes. |
-| — | Escalator 5.3(d) now fires on the whole of C1 level 5 | **Applied.** A defect fix, not a calibration change: the library said C1 level 5 triggered 5.3(d) where nominee shareholders or bearer shares were present, and the model never fired it at all. Three customers move to High. The proper fix, splitting C1 level 5 so the condition can be evaluated, is change 7. See methodology 11.9a. |
+| — | Escalator 5.3(d) now fires on the whole of C1 level 5 | **Applied.** A defect fix, not a calibration change: the library said C1 level 5 triggered 5.3(d) where nominee shareholders or bearer shares were present, and the model never tested C1 at all — it fired 5.3(d) on C2 alone. Three customers move to High. The proper fix, splitting C1 level 5 so the condition can be evaluated, is change 7. See methodology 11.9a. |
 | — | Escalator 5.3(b) reworded to cover payment corridors | **Applied.** The model always fired on G3 level 5; the written escalator said "established in", which the model does not test. Documentation corrected to match the control. No rating changes. |
 
 ---
@@ -261,6 +286,7 @@ What it changes is treatment. Medium instead of Low means standard rather than s
 
 | Version | Date | Change |
 |---|---|---|
+| 0.4 | Sept 2026 | The geography figure at 3.1 corrected: moving the weight from 25%% to 15%% changes 16 customers, not 26, which is the figure for the move to 35%%. It is now read from the scenario row the sentence names. Section 5 no longer describes changes 1 and 2 as built into the model — they are scenario columns and have not been applied to the live rating. 5.1 no longer calls the Stunt & Co escalation the only right answer the back-test produced; the Nationwide reading is a right answer too. |
 | 0.3 | Sept 2026 | Percentiles corrected to the 43rd and 88th; the workload ratio at 4.2 corrected to 1.7; changes 7 and 8 added to section 5; two defect fixes logged in section 9. |
 | 0.2 | Sept 2026 | The back-test ceiling is now stated at 1.3 before any conclusion rests on it; the unsourced workload limit is stated at 4.2 where it decides the answer; the circularity of the proposed boundaries is stated at 5.3 where they are recommended. Change 3 is marked contested, change 5's evidence is downgraded, and a PEP change is added at 4 for regulation 35(3A). All figures re-run after escalator 5.3(d) was corrected. |
 | 0.1 | Sept 2026 | First validation pack: distribution, sensitivity, aggregation rules, recommended changes. |
@@ -269,7 +295,7 @@ What it changes is treatment. Medium instead of Low means standard rather than s
        RULES[0][2], RULES[0][3], RULES[0][4],
        sens_rows,
        max(c for _, _, c, _ in SENS), [c for a, _, c, _ in SENS if "Delivery channel -" in a][0],
-       max(c for a, _, c, _ in SENS if "Geography" in a),
+       [c for a, _, c, _ in SENS if "Geography -" in a][0],
        min(d for _, _, _, d in SENS), max(d for _, _, _, d in SENS), RATIO[0], RATIO[-1],
        rule_rows,
        sum(1 for v in ovr if v > BAND_B_MED), BAND_B_MED,
@@ -291,7 +317,7 @@ w(D + "05-edd-policy-note-2026.md", """
 
 **Firm:** Northgate Bank UK Limited (fictional)
 **Document reference:** HND-CRA-009
-**Version:** 0.3
+**Version:** 0.4
 **To:** Money Laundering Reporting Officer, for the Financial Crime Committee
 **From:** Saman Barati
 **Date:** September 2026
@@ -303,7 +329,7 @@ w(D + "05-edd-policy-note-2026.md", """
 
 1.1 Under the Money Laundering Regulations 2017 as they stood, a relationship involving a high-risk third country required enhanced due diligence automatically, and the United Kingdom's definition of a high-risk third country followed both of the FATF public statements: the *Call for Action* list and the *Increased Monitoring* list.
 
-1.2 The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (**SI 2026/621**, made 9 June 2026, in force 21 days later) narrow that automatic trigger to the **Call for Action** list only. Regulation 19 of the instrument amends regulation 33 of the 2017 Regulations in three places: it substitutes "FATF call for action country" for "high-risk third country" at regulation 33(1)(b), and at regulation 33(3)(a) it defines that term as *"a country named on the list of High-Risk Jurisdictions subject to a Call for Action published by the Financial Action Task Force as such list has effect from time to time"*. At the FATF plenary of 19 June 2026 that list held three jurisdictions; the Increased Monitoring list held 22.
+1.2 The Money Laundering and Terrorist Financing (Amendment) Regulations 2026 (**SI 2026/621**, made 9 June 2026, in force 21 days later) narrow that automatic trigger to the **Call for Action** list only. Regulation 19 of the instrument amends regulation 33 of the 2017 Regulations in three places. Two of them matter here: it substitutes "FATF call for action country" for "high-risk third country" at regulation 33(1)(b), and at regulation 33(3)(a) it defines that term as *"a country named on the list of High-Risk Jurisdictions subject to a Call for Action published by the Financial Action Task Force as such list has effect from time to time"*. The third amendment, at regulation 33(1)(f)(i), replaces "complex or unusually large" with "unusually complex or unusually large in each case given the nature of the transaction" and is not about jurisdictions at all. At the FATF plenary of 19 June 2026 that list held three jurisdictions; the Increased Monitoring list held 22.
 
 1.3 The effect is that a customer connected to any of those 22 jurisdictions no longer attracts enhanced due diligence by operation of law. The obligation to apply a risk-based approach is unchanged, and regulation 33 still requires enhanced measures wherever the firm identifies a high risk. What has gone is the automatic trigger.
 
@@ -325,7 +351,7 @@ Measured on the current population of 400 customers.
 
 3.2 **Not one of them is escalated for any other reason.** The geography escalator was the only control catching them. Once it stops applying, %d of the %d fall to Low, which under the current bands means simplified due diligence where the conditions of regulation 37 are met, no source of funds at onboarding, and a five-year refresh cycle.
 
-3.3 The model already scores these customers: a connection to an Increased Monitoring jurisdiction is level 4 on factors G1, G2 or G3. The problem is that scoring them changes nothing. As the validation pack shows, the weighted average is too compressed for a single factor at level 4 to move a customer across a band boundary. The score sees the risk. The rating does not.
+3.3 The model does score these customers. A connection to an Increased Monitoring jurisdiction is level 4 on factor G2 for %d of them and on factor G3 for the other %d. (Factor G1 records country of residence and takes a single value across this whole book, because paragraph 2.2 of the methodology puts non-UK residents outside the perimeter, so it is never the factor carrying this.) Scoring is not rating. G3 carries %.0f%% of the effective weight and G2 carries %.0f%%, so one geography factor at level 4 lifts the overall score by %.2f or by %.2f — enough to carry anyone across a band boundary only where the rest of the file already sits against one. **Across these %d customers it changes the rating of exactly %d.** Rescore the other %d with that factor at level 1 and every one of them lands in the band it is already in.
 
 3.4 So the change does not just remove a legal obligation. For this firm it removes the **only** mechanism by which an Increased Monitoring jurisdiction affected how a customer was treated.
 
@@ -343,7 +369,7 @@ Measured on the current population of 400 customers.
 
 5.2 Three reasons.
 
-- **It preserves the distinction the amendment draws.** SI 2026/621 is made by the Treasury under delegated powers, and this note does not attempt to state the policy intention behind it — no explanatory memorandum is cited here. What the instrument plainly does is separate three jurisdictions from twenty-five. Option B ignores that separation; option A over-corrects for it.
+- **It preserves the distinction the amendment draws.** SI 2026/621 is made by the Treasury under delegated powers, and this note does not attempt to state the policy intention behind it — no explanatory memorandum is cited here. What the instrument plainly does is separate three jurisdictions from the twenty-two on the other list. Option B ignores that separation; option A over-corrects for it.
 - **It is materially cheaper than option B**, because Medium treatment on %d customers costs less than High treatment on the same %d. How much less depends on what this firm's enhanced due diligence actually costs per file, which the Bank has not given me. The "roughly a third" in section 4 is an order-of-magnitude placeholder and is labelled as one; it should be replaced with the firm's own figure before this note is acted on.
 - **It survives the band recalibration proposed in the validation pack.** A floor at Medium is expressed in bands, not in scores, so it does not need re-tuning when the boundaries move.
 
@@ -381,12 +407,15 @@ Measured on the current population of 400 customers.
 
 | Version | Date | Change |
 |---|---|---|
+| 0.4 | Sept 2026 | 3.3 rewritten. It claimed, on the authority of a validation pack that does not test the question, that a single factor at level 4 can never move a customer across a band. On this population it moves two of these eleven, which 3.2 already implied and 3.3 contradicted. The third amendment regulation 19 makes to regulation 33 is now named at 1.2, so that "three places" is not left with two examples. 5.2 corrected: the instrument separates three jurisdictions from twenty-two, not from twenty-five. |
 | 0.3 | Sept 2026 | The argument at 5.3 was false and is replaced. The "eighteen months" at 7.3 is five. The policy intention behind the instrument is no longer asserted, and the "roughly a third" cost figure is labelled as the placeholder it is. |
 | 0.2 | Sept 2026 | Rewritten against SI 2026/621 as made, rather than the draft instrument and commentary on it. Regulation 19's actual amendments to regulation 33 are quoted at 1.2; the dynamic reference to the FATF list and the insertion of regulation 34A are added at 1.4; section 7 is rewritten to say what the note does not cover rather than to ask for a check that has now been done. Figures re-run. |
 | 0.1 | Sept 2026 | First version, written against the draft instrument. |
 """ % (edd_rows,
        EDD[4][1], 100 * EDD[4][1] / EDD[2][1],          # 3.1
        EDD[6][1], EDD[4][1],                             # 3.2
+       GEO_G2, GEO_G3, 100 * _GW["G3"], 100 * _GW["G2"],
+       3 * _GW["G3"], 3 * _GW["G2"], GEO_N, GEO_MOVES, GEO_N - GEO_MOVES,   # 3.3
        EDD[4][1], EDD[4][1], EDD[4][1],                  # options A, B, C
        EDD[4][1], EDD[4][1],                             # 5.2 second bullet
        EDD[4][1], EDD[4][1],                             # 5.3

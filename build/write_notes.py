@@ -131,17 +131,55 @@ w("6.1 **The factors are drawn independently within a segment.** In a real book 
   "takes 60% of turnover in cash is more likely to be in a cash-intensive sector, and the generator does not know "
   "that. The effect is to spread the population more evenly across the score range than reality would.")
 w("")
-w("6.2 **The SAR flag is independent of everything else**, which is the least realistic assumption here. In a real "
+SCORE = dict((f, dict((lab, sc) for sc, lab in LABELS[f].items())) for f in LABELS)
+
+
+def sc(row, f):
+    return SCORE[f][row[f]]
+
+
+def _n(test):
+    return sum(1 for r in rows if test(r))
+
+
+_pairs = [
+ ("%d sit at P3 level 5 (\"payments to a listed country\") with G3 below level 4",
+  lambda r: sc(r, "P3") == 5 and sc(r, "G3") < 4),
+ ("%d sit at A3 level 5 with G3 below level 4",
+  lambda r: sc(r, "A3") == 5 and sc(r, "G3") < 4),
+ ("%d have G3 at level 4 or 5 without P3 reaching level 5",
+  lambda r: sc(r, "G3") >= 4 and sc(r, "P3") < 5),
+ ("%d hold P1 level 4, \"business account without cash handling\", while expecting cash deposits at P2 level 3 or above",
+  lambda r: sc(r, "P1") == 4 and sc(r, "P2") >= 3),
+ ("%d hold that same P1 level with international payments enabled at P3 level 2 or above",
+  lambda r: sc(r, "P1") == 4 and sc(r, "P3") >= 2),
+ ("%d have P2 level 1, \"no cash deposit or withdrawal facility\", and still declare cash credits at A2",
+  lambda r: sc(r, "P2") == 1 and sc(r, "A2") >= 2),
+ ("%d have P3 level 1, \"not enabled\", and still declare international value at A3",
+  lambda r: sc(r, "P3") == 1 and sc(r, "A3") >= 2),
+]
+w("6.2 **That independence also produces files that contradict their own level definitions.** Some levels in the "
+  "Step 2 library are written by reference to other factors — P3 level 5 and A3 level 5 both point at the country "
+  "score at G3 — and some are written to describe a product that P2 and P3 then describe again. The generator "
+  "does not know any of that, so on this draw: " +
+  "; ".join(txt % _n(t) for txt, t in _pairs) + ". None of it changes a score, because the model reads each "
+  "factor's recorded level and nothing else, and none of it is caught by the integrity checks, which test the "
+  "library and the arithmetic rather than the plausibility of a file. It does mean that a reader who checks one "
+  "customer's row against the level definitions can find a combination the library says cannot exist. The fix is "
+  "a cross-factor constraint in the generator; it is not applied here because it would change the population and "
+  "therefore every count in every document, and the count is what this section exists to disclose.")
+w("")
+w("6.3 **The SAR flag is independent of everything else**, which is the least realistic assumption here. In a real "
   "book, a SAR is the end of a chain that usually starts with something the model can already see.")
 w("")
-w("6.3 **There is no bad-outcome label.** Nothing in this file records which customers went on to launder money, "
+w("6.4 **There is no bad-outcome label.** Nothing in this file records which customers went on to launder money, "
   "because inventing that would let the model be tuned against a fiction. It is the reason Step 4 tests the model "
   "against real published enforcement cases instead of against this population.")
 w("")
-w("6.4 **The percentages are judgement.** They are shaped by what UK retail banking looks like from the outside, "
+w("6.5 **The percentages are judgement.** They are shaped by what UK retail banking looks like from the outside, "
   "not by any firm's internal data, which a personal project cannot have.")
 w("")
-w("6.5 **The population is not a validation set.** It shows how the model behaves across a plausible spread of "
+w("6.6 **The population is not a validation set.** It shows how the model behaves across a plausible spread of "
   "customers. It cannot show whether the model is right, only whether it discriminates.")
 w("")
 open(OUT, "w", encoding="utf-8").write("\n".join(L) + "\n")

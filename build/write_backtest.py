@@ -81,7 +81,7 @@ def w(path, text):
 
 
 HEAD = """**Document reference:** HND-CRA-007
-**Version:** 0.3
+**Version:** 0.4
 **Author:** Saman Barati
 **Date:** September 2026"""
 
@@ -201,8 +201,9 @@ settle were pushed to 5.
 **It cannot show that these customers should have scored High on the arithmetic.** Read the ceiling
 column. The highest ceiling of any of the six is **%.2f**, and the High band begins at 3.50. The
 facts the notices settle pin between %.0f%% and %.0f%% of the model's weight at level 1 before a single
-judgement is made: for the four business customers, a UK company with UK owners onboarded in branch on
-documents seen face to face; for Monzo and Nationwide, an ordinary UK personal customer with no
+judgement is made: for three of the four business customers, a UK company with UK owners onboarded in
+branch on documents seen face to face, and for WealthTek the same except the verification method, which
+its notice leaves open; for Monzo and Nationwide, an ordinary UK personal customer with no
 international activity, which pins even more. A test
 whose answer is fixed by its inputs is not a test. **The finding that no reconstruction reaches the
 High band on the arithmetic was guaranteed before the exercise began**, and every conclusion below is
@@ -219,12 +220,15 @@ written in that knowledge.
 
 ## What it found
 
-### 1. Three of the six are caught, and every one of them by the same escalator
+### 1. Three of the six reach High in at least one reading, and every one of them by the same escalator
 
 %s of the six cases reach High in at least one reading, and all three do it through escalator 5.3(c) —
 money service business, trust or company service provider, or dealer in high-value goods — rather than
-through a score. **Not one reconstruction, in any reading, reaches the High band on the arithmetic**,
-though for the reasons above none of them could have.
+through a score. Only one of the three, Stunt & Co, is High on the file exactly as its notice records
+it: Fowler Oldfield is High on one of two defensible readings of the same file, and Santander only in
+the counterfactual where the verification the FCA found missing had been done. **Not one
+reconstruction, in any reading, reaches the High band on the arithmetic**, though for the reasons above
+none of them could have.
 
 One escalator carrying every catch in the back-test is not a comfortable result. It says the model has
 one working control at the top of the scale and nineteen factors that mostly decide nothing, and it

@@ -624,10 +624,10 @@ extra = [
  ("The backtest uses the same weights as the population",
   "=ROUND(SUMPRODUCT(Backtest!$%s$%d:$%s$%d,%s)-Backtest!$%s$%d,9)"
   % (L(SCO0), BT0, L(SCO0 + NF - 1), BT0, W_EFF, L(RES0), BT0), 0),
- ("The two Fowler Oldfield rows differ in exactly one factor score",
+ ("The FO-lo and FO-mid rows differ in exactly one factor score",
   "=SUMPRODUCT(--(Backtest!$%s$%d:$%s$%d<>Backtest!$%s$%d:$%s$%d))"
   % (L(SCO0), BT0, L(SCO0 + NF - 1), BT0, L(SCO0), BT0 + 1, L(SCO0 + NF - 1), BT0 + 1), 1),
- ("No -hi row scores below its -lo row on any factor",
+ ("The FO-hi row scores at or above FO-lo on every factor",
   "=SUMPRODUCT(--(Backtest!$%s$%d:$%s$%d>Backtest!$%s$%d:$%s$%d))"
   % (L(SCO0), BT0, L(SCO0 + NF - 1), BT0, L(SCO0), BT0 + 2, L(SCO0 + NF - 1), BT0 + 2), 0),
 ]
